@@ -1,0 +1,54 @@
+.fz-title {
+  //(例如：訊息專區 列表標題)
+  font-size: 24px;
+}
+.fz-sub-title {
+  //(例如：美味餐點 餐點名稱)
+  font-size: 20px;
+}
+.fz-title-small {
+  //(例如：)
+  font-size: 20px;
+  @include media-breakpoint-up(md) {
+    font-size: 24px;
+  }
+}
+.fz-title-middle {
+  //(例如：訊息專區 內文標題、關於我們 小標題、首頁 區塊標題)
+  font-size: 28px;
+  @include media-breakpoint-up(md) {
+    font-size: 32px;
+  }
+}
+.fz-title-large {
+  //(例如：HeroTitle)
+  font-size: 32px;
+  @include media-breakpoint-up(md) {
+    font-size: 40px;
+  }
+}
+.fz-content {
+  //(例如：訊息專區 內文內容)
+  font-size: 16px;
+}
+.fz-content-small {
+  //(例如：)
+  font-size: 14px;
+  @include media-breakpoint-up(md) {
+    font-size: 16px;
+  }
+}
+.fz-content-middle {
+  //(例如：關於我們 內容、分頁頁碼、訊息專區內文 返回按鈕)
+  font-size: 16px;
+  @include media-breakpoint-up(md) {
+    font-size: 18px;
+  }
+}
+.fz-content-large {
+  //(例如：)
+  font-size: 18px;
+  @include media-breakpoint-up(md) {
+    font-size: 22px;
+  }
+}
