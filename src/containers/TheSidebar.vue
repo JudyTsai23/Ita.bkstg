@@ -1,6 +1,6 @@
 <template>
   <CSidebar fixed :minimize="minimize" :show="show" @update:show="(value) => $store.commit('set', ['sidebarShow', value])">
-    <CSidebarBrand class="d-md-down-none d-flex flex-column text-decoration-none py-3" to="/">
+    <CSidebarBrand class="d-md-down-none logo d-flex flex-column text-decoration-none py-3" to="/">
       <!-- <CIcon 
         class="c-sidebar-brand-full" 
         name="logo" 
@@ -15,8 +15,15 @@
         :height="35" 
         viewBox="0 0 110 134"
       /> -->
-      <img src="@/assets/img/logo/logo-rmbg.png" style="width: 40%" />
-      <div>Content Management System</div>
+      <img src="@/assets/img/logo/logo-rmbg.png" />
+      <div class="d-inline-flex align-items-center">
+        <h4 class="mb-1">C</h4>
+        <span class="mr-1">ontent</span>
+        <h4 class="mb-1">M</h4>
+        <span class="mr-1">anagement</span>
+        <h4 class="mb-1">S</h4>
+        <span>ystem</span>
+      </div>
     </CSidebarBrand>
 
     <CRenderFunction flat :content-to-render="$options.nav" />
@@ -40,3 +47,13 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.logo {
+  img {
+    width: 40%;
+  }
+  div {
+    color: #c3ffce;
+  }
+}
+</style>

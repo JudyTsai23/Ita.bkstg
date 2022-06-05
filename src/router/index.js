@@ -16,7 +16,7 @@ const Register = () => import("@/views/pages/Register");
 Vue.use(Router);
 
 export default new Router({
-  mode: "hash", // https://router.vuejs.org/api/#mode
+  mode: "history", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes(),
@@ -27,13 +27,28 @@ function configRoutes() {
     {
       path: "/",
       redirect: "/dashboard",
-      name: "Home",
+      name: "首頁",
       component: TheContainer,
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
           component: Dashboard,
+        },
+        {
+          path: "meal",
+          name: "餐點管理",
+          component: () => import("@/views/Management/Meal/Meal.vue"),
+        },
+        {
+          path: "meal/cate",
+          name: "餐點類別管理",
+          component: () => import("@/views/Management/MealCategory/MealCategory.vue"),
+        },
+        {
+          path: "news",
+          name: "訊息管理",
+          component: () => import("@/views/Management/News/News.vue"),
         },
       ],
     },

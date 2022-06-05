@@ -2,48 +2,69 @@ export default [
   {
     _name: "CSidebarNav",
     _children: [
+      // {
+      //   _name: "CSidebarNavItem",
+      //   name: "Dashboard",
+      //   to: "/dashboard",
+      //   icon: "cil-speedometer",
+      //   badge: {
+      //     color: "primary",
+      //     text: "NEW",
+      //   },
+      // },
+      {
+        _name: "CSidebarNavTitle",
+        _children: ["內容管理"],
+      },
+      // {
+      //   _name: "CSidebarNavDropdown",
+      //   name: "Base",
+      //   route: "/base",
+      //   icon: "cil-puzzle",
+      //   items: [
+      //     {
+      //       name: "Breadcrumbs",
+      //       to: "/base/breadcrumbs",
+      //     },
+      //   ],
+      // },
       {
         _name: "CSidebarNavItem",
-        name: "Dashboard",
-        to: "/dashboard",
-        icon: "cil-speedometer",
-        badge: {
-          color: "primary",
-          text: "NEW",
-        },
+        name: "餐點管理",
+        to: "/meal",
+        icon: "cilRestaurant",
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "餐點類別管理",
+        to: "/meal/cate",
+        icon: "cilListNumbered",
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "訊息管理",
+        to: "/news",
+        icon: "cilBullhorn",
       },
       {
         _name: "CSidebarNavTitle",
-        _children: ["Components"],
-      },
-      {
-        _name: "CSidebarNavDropdown",
-        name: "Base",
-        route: "/base",
-        icon: "cil-puzzle",
-        items: [
-          {
-            name: "Breadcrumbs",
-            to: "/base/breadcrumbs",
-          },
-        ],
+        _children: ["基本設定"],
       },
       {
         _name: "CSidebarNavItem",
-        name: "Charts",
+        name: "基本設定",
+        to: "/charts",
+        icon: "cilLeaf",
+      },
+      {
+        _name: "CSidebarNavTitle",
+        _children: ["圖表分析"],
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "回饋分析",
         to: "/charts",
         icon: "cil-chart-pie",
-      },
-      {
-        _name: "CSidebarNavItem",
-        name: "Widgets",
-        to: "/widgets",
-        icon: "cil-calculator",
-        badge: {
-          color: "primary",
-          text: "NEW",
-          shape: "pill",
-        },
       },
       {
         _name: "CSidebarNavDivider",
@@ -51,7 +72,7 @@ export default [
       },
       {
         _name: "CSidebarNavTitle",
-        _children: ["Extras"],
+        _children: ["測試參考用"],
       },
       {
         _name: "CSidebarNavDropdown",
@@ -77,14 +98,14 @@ export default [
           },
         ],
       },
-      {
-        _name: "CSidebarNavItem",
-        name: "Download CoreUI",
-        href: "http://coreui.io/vue/",
-        icon: { name: "cil-cloud-download", class: "text-white" },
-        _class: "bg-success text-white",
-        target: "_blank",
-      },
+      // {
+      //   _name: "CSidebarNavItem",
+      //   name: "Download CoreUI",
+      //   href: "http://coreui.io/vue/",
+      //   icon: { name: "cil-cloud-download", class: "text-white" },
+      //   _class: "bg-success text-white",
+      //   target: "_blank",
+      // },
     ],
   },
 ];
