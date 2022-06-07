@@ -31,29 +31,29 @@ export default [
       {
         _name: "CSidebarNavItem",
         name: "餐點管理",
-        to: "/meal",
+        to: "/mngt/meal",
         icon: "cilRestaurant",
       },
       {
         _name: "CSidebarNavItem",
         name: "餐點類別管理",
-        to: "/meal/cate",
+        to: "/mngt/meal/cate",
         icon: "cilListNumbered",
       },
       {
         _name: "CSidebarNavItem",
         name: "訊息管理",
-        to: "/news",
+        to: "/mngt/news",
         icon: "cilBullhorn",
       },
       {
         _name: "CSidebarNavTitle",
-        _children: ["基本設定"],
+        _children: ["設定"],
       },
       {
         _name: "CSidebarNavItem",
         name: "基本設定",
-        to: "/charts",
+        to: "/st/basic",
         icon: "cilLeaf",
       },
       {
@@ -63,7 +63,7 @@ export default [
       {
         _name: "CSidebarNavItem",
         name: "回饋分析",
-        to: "/charts",
+        to: "/anly/feedback",
         icon: "cil-chart-pie",
       },
       {

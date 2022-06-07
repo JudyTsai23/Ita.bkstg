@@ -1,12 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-// Containers
-const TheContainer = () => import("@/containers/TheContainer");
-
-// Views
-const Dashboard = () => import("@/views/Dashboard");
-
 // Views - Pages
 const Page404 = () => import("@/views/pages/Page404");
 const Page500 = () => import("@/views/pages/Page500");
@@ -28,13 +22,21 @@ function configRoutes() {
       path: "/",
       redirect: "/dashboard",
       name: "首頁",
-      component: TheContainer,
+      component: () => import("@/containers/TheContainer"),
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
-          component: Dashboard,
+          component: () => import("@/views/Dashboard"),
         },
+      ],
+    },
+    {
+      path: "/mngt",
+      redirect: "/meal",
+      name: "內容管理",
+      component: () => import("@/containers/TheContainer"),
+      children: [
         {
           path: "meal",
           name: "餐點管理",
@@ -49,6 +51,32 @@ function configRoutes() {
           path: "news",
           name: "訊息管理",
           component: () => import("@/views/Management/News/News.vue"),
+        },
+      ],
+    },
+    {
+      path: "/st",
+      redirect: "/basic",
+      name: "設定",
+      component: () => import("@/containers/TheContainer"),
+      children: [
+        {
+          path: "basic",
+          name: "基本設定",
+          component: () => import("@/views/Settings/Basic/Basic.vue"),
+        },
+      ],
+    },
+    {
+      path: "/anly",
+      redirect: "/feedback",
+      name: "圖表分析",
+      component: () => import("@/containers/TheContainer"),
+      children: [
+        {
+          path: "feedback",
+          name: "回饋分析",
+          component: () => import("@/views/Analysis/Feedback/Feedback.vue"),
         },
       ],
     },
