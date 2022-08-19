@@ -75,6 +75,7 @@ import {
   cilListNumbered,
   cilLeaf,
 } from "@coreui/icons";
+import { cilElevator, cilCaretBottom, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
 import { logo } from "./logo";
 
 export const iconsSet = Object.assign(
@@ -163,5 +164,12 @@ export const iconsSet = Object.assign(
     cibPaypal,
     cibGooglePay,
     cibCcAmex,
+  },
+  {
+    cilElevator,
+    cilCaretBottom,
+    cilTrash,
+    cilPlaylistAdd,
+    cilBolt,
   }
 );

@@ -1,3 +1,30 @@
 // Here you can add other styles
 // @import "fonts";
 @import "text";
+
+// icon style
+.icon-circle {
+  border-radius: 50%;
+  padding: 3px;
+}
+// draggable
+.flip-list-move {
+  transition: transform 0.3s;
+}
+.move-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  padding: 10px;
+  cursor: move;
+}
+// override form style
+.form-control {
+  color: #000 !important;
+}
+.form-row > [class*='col-'] > .custom-file-label {
+  left: 5px;
+  right: 5px;
+}
+.custom-file-label::after {
+  content: '瀏覽';
+}
