@@ -43,6 +43,16 @@ function configRoutes() {
           component: () => import('@/views/Management/Meal/Meal.vue'),
         },
         {
+          path: 'meal/create',
+          name: '餐點-新增',
+          component: () => import('@/views/Management/Meal/MealEdit.vue'),
+        },
+        {
+          path: 'meal/edit/:id',
+          name: '餐點-修改',
+          component: () => import('@/views/Management/Meal/MealEdit.vue'),
+        },
+        {
           path: 'meal/cate',
           name: '餐點類別管理',
           component: () => import('@/views/Management/MealCategory/MealCategory.vue'),

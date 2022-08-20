@@ -1,6 +1,6 @@
 // Here you can add other styles
 // @import "fonts";
-@import "text";
+@import 'text';
 
 // icon style
 .icon-circle {
@@ -20,10 +20,6 @@
 // override form style
 .form-control {
   color: #000 !important;
-}
-.form-row > [class*='col-'] > .custom-file-label {
-  left: 5px;
-  right: 5px;
 }
 .custom-file-label::after {
   content: '瀏覽';

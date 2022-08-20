@@ -21,12 +21,9 @@
             </CInput>
 
             <!-- 圖示欄位 -->
-            <CInputFile label="圖示" addInputClasses="custom-file-input" horizontal :required="mealCateData.icon == ''" accept="image/*" @change="getUploadImage" id="inputIcon">
+            <CInputFile label="圖示" :placeholder="UploadImageSelectedStr" custom horizontal :required="mealCateData.icon == ''" accept="image/*" @change="getUploadImage">
               <template #label>
                 <span class="col-sm-3 col-form-label">圖示</span>
-              </template>
-              <template #label-after-input>
-                <label class="custom-file-label">{{ UploadImageSelectedStr }}</label>
               </template>
               <!-- --圖示預覽-- -->
               <template #description>
