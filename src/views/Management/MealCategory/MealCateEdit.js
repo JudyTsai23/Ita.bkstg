@@ -1,8 +1,8 @@
-import AjaxService from '@/services/ajaxService.js';
-import draggable from 'vuedraggable';
+import AjaxService from "@/services/ajaxService.js";
+import draggable from "vuedraggable";
 
 export default {
-  name: 'MealCateEdit',
+  name: "MealCateEdit",
   components: {
     draggable,
   },
@@ -12,17 +12,17 @@ export default {
       currId: this.$route.params.id,
       // 當前餐點類別資料
       mealCateData: {
-        id: '',
-        name: '',
-        name_zh: '',
-        icon: '',
-        sort: '',
+        id: "",
+        name: "",
+        name_zh: "",
+        icon: "",
+        sort: "",
         subCateList: Array(),
       },
       // 上傳的圖片(base64字串)
-      UploadImage: '',
+      UploadImage: "",
       // 上傳的圖片檔名
-      UploadImageName: '',
+      UploadImageName: "",
       // 是否曾經改動過
       changed: false,
     };
@@ -39,7 +39,7 @@ export default {
     // 取得當前餐點類別資料
     getMealCateData() {
       AjaxService.get(
-        '/server/mealCate/' + this.currId,
+        "/server/mealCate/" + this.currId,
         (successResp) => {
           if (successResp.restData) {
             let resultData = successResp.restData[0];
@@ -51,11 +51,11 @@ export default {
               sort: resultData.sort,
               subCateList: resultData.subCateList,
             };
-            console.log('查詢餐點類別成功!');
+            console.log("查詢餐點類別成功!");
           }
         },
         (errorResp) => {
-          console.log('查詢餐點類別失敗!');
+          console.log("查詢餐點類別失敗!");
           console.log(errorResp);
         }
       );
@@ -63,7 +63,7 @@ export default {
     // 檢查頁面內容是否曾修改過
     checkChanged() {
       if (this.changed) {
-        if (confirm('頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？')) {
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
           // 確定離開
           return true;
         }
@@ -77,16 +77,15 @@ export default {
       // const file = e.target.files.item(0);
       // --(CInputFile傳過來的已經是e.target.files)
       const file = e.item(0);
-      console.log(file);
       if (!file) {
-        this.UploadImage = '';
-        this.UploadImageName = '';
+        this.UploadImage = "";
+        this.UploadImageName = "";
       } else {
         //--建立 reader 變數為一個檔案讀取器物件
         this.UploadImageName = file.name;
         const reader = new FileReader();
         //--先準備好讀取器讀取檔案後要執行的工作
-        reader.addEventListener('load', (e) => {
+        reader.addEventListener("load", (e) => {
           //----將 e.target.result (也就是讀取器接收到的檔案資訊)存入data
           this.UploadImage = e.target.result;
         });
@@ -97,29 +96,28 @@ export default {
     // 增加子類別
     addSubCate() {
       this.subCateList.push({
-        id: '',
-        name: '',
-        sort: '',
+        id: "",
+        name: "",
+        sort: "",
       });
       this.$nextTick(() => {
         let idx = this.subCateList.length - 1;
-        document.querySelectorAll('.input-subCate').item(idx).focus();
+        document.querySelectorAll(".input-subCate").item(idx).focus();
       });
     },
     // 刪除子類別
     delSubCate(idx) {
-      if (this.subCateList[idx].id != '') {
-        if (confirm('將會連同類別中的餐點一並刪除！是否確定要刪除？')) {
+      if (this.subCateList[idx].id != "") {
+        if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？")) {
           if (this.checkChanged()) {
             AjaxService.delete(
-              '/server/mealCate/sub/' + this.subCateList[idx].id,
+              "/server/mealCate/sub/" + this.subCateList[idx].id,
               (successResp) => {
-                if (successResp.restData) {
-                  window.location.reload();
-                }
+                console.log("刪除餐點子類別成功!");
+                window.location.reload();
               },
               (errorResp) => {
-                console.log('刪除餐點子類別失敗!');
+                console.log("刪除餐點子類別失敗!");
                 console.log(errorResp);
               }
             );
@@ -131,9 +129,9 @@ export default {
     },
     // 送出資料儲存
     save() {
-      const form = document.querySelector('#updateForm');
+      const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
-        let url = '/server/mealCate/save';
+        let url = "/server/mealCate/save";
         let subData = this.subCateList.map((item, idx) => {
           item.sort = idx + 1;
           return item;
@@ -146,7 +144,7 @@ export default {
           sort: this.mealCateData.sort,
           subCateList: subData,
         };
-        if (this.UploadImage != '') {
+        if (this.UploadImage != "") {
           // --用base64字串的方式上傳圖片
           this.mealCateData.icon = this.UploadImage;
         }
@@ -155,18 +153,16 @@ export default {
           url,
           sendData,
           (successResp) => {
-            if (successResp.restData) {
-              console.log('修改餐點類別成功!');
-              window.location.reload();
-            }
+            console.log("修改餐點類別成功!");
+            this.$router.push("/mngt/meal/cate");
           },
           (errorResp) => {
-            console.log('修改餐點類別失敗!');
+            console.log("修改餐點類別失敗!");
             console.log(errorResp);
           }
         );
       }
-      form.classList.add('was-validated');
+      form.classList.add("was-validated");
     },
   },
   computed: {
@@ -176,8 +172,8 @@ export default {
     },
     // 選擇檔案所顯示的文字
     UploadImageSelectedStr() {
-      if (this.UploadImageName == '') {
-        return '尚未選擇檔案';
+      if (this.UploadImageName == "") {
+        return "尚未選擇檔案";
       }
       return this.UploadImageName;
     },

@@ -1,9 +1,9 @@
-import AjaxService from '@/services/ajaxService.js';
-import draggable from 'vuedraggable';
-import ProcessButtons from '@/components/ProcessButtons';
+import AjaxService from "@/services/ajaxService.js";
+import draggable from "vuedraggable";
+import ProcessButtons from "@/components/ProcessButtons";
 
 export default {
-  name: 'MealCategory',
+  name: "MealCategory",
   components: {
     draggable,
     ProcessButtons,
@@ -15,7 +15,7 @@ export default {
       // 所有餐點子類別
       mealSubCateList: [],
       // 當前展開的餐點類別ID
-      activeCate: '',
+      activeCate: "",
       // 是否曾經改動過
       changed: false,
     };
@@ -31,7 +31,7 @@ export default {
     // 取得所有餐點類別
     getMealCateList() {
       AjaxService.get(
-        '/server/mealCate/cate',
+        "/server/mealCate/cate",
         (successResp) => {
           if (successResp.restData) {
             let resultList = successResp.restData;
@@ -44,11 +44,11 @@ export default {
               };
               return cate;
             });
-            console.log('查詢餐點類別成功!');
+            console.log("查詢餐點類別成功!");
           }
         },
         (errorResp) => {
-          console.log('查詢餐點類別失敗!');
+          console.log("查詢餐點類別失敗!");
           console.log(errorResp);
         }
       );
@@ -56,22 +56,22 @@ export default {
     // 取得所有餐點子類別
     getMealSubCateList() {
       AjaxService.get(
-        '/server/mealCate/sub',
+        "/server/mealCate/sub",
         (successResp) => {
           if (successResp.restData) {
             this.mealSubCateList = successResp.restData;
-            console.log('查詢餐點子類別成功!');
+            console.log("查詢餐點子類別成功!");
           }
         },
         (errorResp) => {
-          console.log('查詢餐點子類別失敗!');
+          console.log("查詢餐點子類別失敗!");
           console.log(errorResp);
         }
       );
     },
     // 切換餐點類別展開的項目
     activeCateChanged(id) {
-      this.activeCate = this.activeCate == id ? '' : id;
+      this.activeCate = this.activeCate == id ? "" : id;
     },
     // 比對是否為當前展開的項目
     checkActiveCate(id) {
@@ -80,7 +80,7 @@ export default {
     // 檢查頁面內容是否曾修改過
     checkChanged() {
       if (this.changed) {
-        if (confirm('頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？')) {
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
           // 確定離開
           return true;
         }
@@ -92,7 +92,7 @@ export default {
     // 前往新增類別
     addCate() {
       if (this.checkChanged()) {
-        this.$router.push('/mngt/meal/cate/create');
+        this.$router.push("/mngt/meal/cate/create");
       }
     },
     // 送出排序資料儲存
@@ -105,16 +105,14 @@ export default {
         return data;
       });
       AjaxService.put(
-        '/server/mealCate',
+        "/server/mealCate",
         sortData,
         (successResp) => {
-          if (successResp.restData) {
-            console.log('修改餐點類別排序成功!');
-            window.location.reload();
-          }
+          console.log("修改餐點類別排序成功!");
+          window.location.reload();
         },
         (errorResp) => {
-          console.log('修改餐點類別排序失敗!');
+          console.log("修改餐點類別排序失敗!");
           console.log(errorResp);
         }
       );

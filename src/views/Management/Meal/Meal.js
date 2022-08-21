@@ -1,9 +1,9 @@
-import AjaxService from '@/services/ajaxService.js';
-import draggable from 'vuedraggable';
-import ProcessButtons from '@/components/ProcessButtons';
+import AjaxService from "@/services/ajaxService.js";
+import draggable from "vuedraggable";
+import ProcessButtons from "@/components/ProcessButtons";
 
 export default {
-  name: 'Meal',
+  name: "Meal",
   components: {
     draggable,
     ProcessButtons,
@@ -35,7 +35,7 @@ export default {
     // 取得所有餐點類別
     getMealCateList() {
       AjaxService.get(
-        '/server/mealCate/cate',
+        "/server/mealCate/cate",
         (successResp) => {
           if (successResp.restData) {
             let resultList = successResp.restData;
@@ -46,30 +46,30 @@ export default {
               };
               return cate;
             });
-            console.log('查詢餐點類別成功!');
+            console.log("查詢餐點類別成功!");
             this.currCateId = this.mealCateList[0].id;
             this.getMealList();
           }
         },
         (errorResp) => {
-          console.log('查詢餐點類別失敗!');
+          console.log("查詢餐點類別失敗!");
           console.log(errorResp);
         }
       );
     },
     // 取得當前類別的所有餐點
     getMealList() {
-      const url = '/server/menu/meals/' + this.currCateId;
+      const url = "/server/menu/meals/" + this.currCateId;
       AjaxService.get(
         url,
         (successResp) => {
           if (successResp.restData) {
             this.mealList = successResp.restData;
-            console.log('查詢餐點成功!');
+            console.log("查詢餐點成功!");
           }
         },
         (errorResp) => {
-          console.log('查詢餐點失敗!');
+          console.log("查詢餐點失敗!");
           console.log(errorResp);
         }
       );
@@ -77,12 +77,11 @@ export default {
     // 切換餐點類別
     currCateChanged(id) {
       this.currCateId = id;
-      console.log(this.currCateId);
     },
     // 檢查頁面內容是否曾修改過
     checkChanged() {
       if (this.changed) {
-        if (confirm('頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？')) {
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
           // 確定離開
           return true;
         }
@@ -94,13 +93,13 @@ export default {
     // 前往修改餐點類別
     editCate() {
       if (this.checkChanged()) {
-        this.$router.push('/mngt/meal/cate');
+        this.$router.push("/mngt/meal/cate");
       }
     },
     // 前往新增餐點
     addMeal() {
       if (this.checkChanged()) {
-        this.$router.push('/mngt/meal/create');
+        this.$router.push("/mngt/meal/create");
       }
     },
     // 送出排序資料儲存
@@ -116,16 +115,14 @@ export default {
       });
       console.log(sortData);
       AjaxService.put(
-        '/server/menu',
+        "/server/menu",
         sortData,
         (successResp) => {
-          if (successResp.restData) {
-            console.log('修改餐點排序成功!');
-            window.location.reload();
-          }
+          console.log("修改餐點排序成功!");
+          window.location.reload();
         },
         (errorResp) => {
-          console.log('修改餐點排序失敗!');
+          console.log("修改餐點排序失敗!");
           console.log(errorResp);
         }
       );

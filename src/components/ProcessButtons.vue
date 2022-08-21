@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import AjaxService from '@/services/ajaxService.js';
+import AjaxService from "@/services/ajaxService.js";
 
 export default {
-  name: 'ProcessButtons',
+  name: "ProcessButtons",
   props: {
     // 是否曾經改動過
     isChange: {
@@ -27,7 +27,7 @@ export default {
     // 刪除的提醒說明
     delMsg: {
       type: String,
-      default: '',
+      default: "",
     },
   },
   data() {
@@ -36,7 +36,7 @@ export default {
   methods: {
     checkChanged() {
       if (this.isChange) {
-        if (confirm('頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？')) {
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
           // 確定離開
           return true;
         }
@@ -56,12 +56,11 @@ export default {
           AjaxService.delete(
             this.delUrl,
             (successResp) => {
-              if (successResp.restData) {
-                window.location.reload();
-              }
+              console.log("刪除餐點類別成功!");
+              window.location.reload();
             },
             (errorResp) => {
-              console.log('刪除餐點類別失敗!');
+              console.log("刪除餐點類別失敗!");
               console.log(errorResp);
             }
           );
@@ -71,7 +70,7 @@ export default {
   },
   computed: {
     delAlertStr() {
-      return this.delMsg + '是否確定要刪除？';
+      return this.delMsg + "是否確定要刪除？";
     },
   },
 };

@@ -76,7 +76,7 @@
 <script src="./MealCateEdit.js"></script>
 
 <style lang="scss" scoped>
-@import '~@coreui/coreui/scss/variables/colors';
+@import "~@coreui/coreui/scss/variables/colors";
 
 .cate-info {
   background-color: $warning-25;
