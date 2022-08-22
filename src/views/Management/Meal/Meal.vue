@@ -33,7 +33,7 @@
 
               <div class="col text-left">{{ meal.name }}</div>
 
-              <ProcessButtons :is-change="changed" :edit-url="`/mngt/meal/edit/${meal.id}`" :del-url="`/server/mealcate/${meal.id}`" @del-method="deleteCate(meal.id)" />
+              <ProcessButtons :is-change="changed" :item-id="meal.id" item-group="meal" edit-url="/mngt/meal/edit/" />
             </li>
           </transition-group>
         </draggable>

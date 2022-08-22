@@ -1,3 +1,4 @@
+import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 import draggable from "vuedraggable";
 
@@ -47,8 +48,9 @@ export default {
 
     // 取得當前餐點資料
     getMealData() {
+      let url = ApiUrl.getUrl("meal", "getOne") + this.currId;
       AjaxService.get(
-        "/server/menu/meal/" + this.currId,
+        url,
         (successResp) => {
           if (successResp.restData) {
             let resultData = successResp.restData;
@@ -85,8 +87,9 @@ export default {
     },
     // 取得所有餐點類別
     getMealCateList() {
+      let url = ApiUrl.getUrl("mealCate", "getAll");
       AjaxService.get(
-        "/server/mealCate/cate",
+        url,
         (successResp) => {
           if (successResp.restData) {
             let resultList = successResp.restData;
@@ -108,8 +111,9 @@ export default {
     },
     // 取得所有餐點子類別
     getMealSubCateList() {
+      let url = ApiUrl.getUrl("mealCate", "getAllSub");
       AjaxService.get(
-        "/server/mealCate/sub",
+        url,
         (successResp) => {
           if (successResp.restData) {
             this.mealSubCateList = successResp.restData;
@@ -148,7 +152,6 @@ export default {
     save() {
       const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
-        let url = "/server/menu/save";
         // 處理圖片資料
         let image = this.UploadImage != "" ? this.UploadImage : this.mealData.image;
         // 處理期間限定資料
@@ -170,6 +173,7 @@ export default {
           isPublic: this.mealData.public,
         };
 
+        let url = ApiUrl.getUrl("meal", "save");
         AjaxService.post(
           url,
           sendData,

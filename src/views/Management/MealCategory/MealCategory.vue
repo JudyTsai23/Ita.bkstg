@@ -44,13 +44,7 @@
                     <span v-else v-for="(subCate, idx) in mealSubCateList[cate.id]" :key="`cate${cate.id}_${idx}`" class="d-inline-block border rounded p-2 mb-2 mr-2">{{ subCate }}</span>
                   </p>
                   <!-- 修改/刪除 按鈕 -->
-                  <ProcessButtons
-                    :is-change="changed"
-                    :edit-url="`/mngt/meal/cate/edit/${cate.id}`"
-                    :del-url="`/server/mealCate/cate/${cate.id}`"
-                    del-msg="將會連同類別中的餐點一並刪除！ "
-                    @del-method="deleteCate(cate.id)"
-                  />
+                  <ProcessButtons :is-change="changed" :item-id="cate.id" item-group="mealCate" edit-url="/mngt/meal/cate/edit/" del-msg="將會連同類別中的餐點一並刪除！ " />
                 </CCol>
               </CRow>
             </CCollapse>

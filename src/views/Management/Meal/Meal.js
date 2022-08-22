@@ -1,3 +1,4 @@
+import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 import draggable from "vuedraggable";
 import ProcessButtons from "@/components/ProcessButtons";
@@ -34,8 +35,9 @@ export default {
     },
     // 取得所有餐點類別
     getMealCateList() {
+      let url = ApiUrl.getUrl("mealCate", "getAll");
       AjaxService.get(
-        "/server/mealCate/cate",
+        url,
         (successResp) => {
           if (successResp.restData) {
             let resultList = successResp.restData;
@@ -59,7 +61,7 @@ export default {
     },
     // 取得當前類別的所有餐點
     getMealList() {
-      const url = "/server/menu/meals/" + this.currCateId;
+      let url = ApiUrl.getUrl("meal", "getAll") + this.currCateId;
       AjaxService.get(
         url,
         (successResp) => {
@@ -114,8 +116,9 @@ export default {
         });
       });
       console.log(sortData);
+      let url = ApiUrl.getUrl("meal", "saveSort");
       AjaxService.put(
-        "/server/menu",
+        url,
         sortData,
         (successResp) => {
           console.log("修改餐點排序成功!");

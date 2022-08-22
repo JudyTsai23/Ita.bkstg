@@ -1,3 +1,4 @@
+import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 import draggable from "vuedraggable";
 
@@ -38,8 +39,9 @@ export default {
     },
     // 取得當前餐點類別資料
     getMealCateData() {
+      let url = ApiUrl.getUrl("mealCate", "getOne") + this.currId;
       AjaxService.get(
-        "/server/mealCate/" + this.currId,
+        url,
         (successResp) => {
           if (successResp.restData) {
             let resultData = successResp.restData[0];
@@ -110,8 +112,9 @@ export default {
       if (this.subCateList[idx].id != "") {
         if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？")) {
           if (this.checkChanged()) {
+            let url = ApiUrl.getUrl("mealCate", "deleteSub") + this.subCateList[idx].id;
             AjaxService.delete(
-              "/server/mealCate/sub/" + this.subCateList[idx].id,
+              url,
               (successResp) => {
                 console.log("刪除餐點子類別成功!");
                 window.location.reload();
@@ -131,7 +134,6 @@ export default {
     save() {
       const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
-        let url = "/server/mealCate/save";
         let subData = this.subCateList.map((item, idx) => {
           item.sort = idx + 1;
           return item;
@@ -149,6 +151,7 @@ export default {
           this.mealCateData.icon = this.UploadImage;
         }
 
+        let url = ApiUrl.getUrl("mealCate", "save");
         AjaxService.post(
           url,
           sendData,

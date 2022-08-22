@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 
 export default {
@@ -16,13 +17,24 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 處理中項目的ID
+    itemId: {
+      required: true,
+    },
+    // 處理中項目所屬的群組
+    itemGroup: {
+      type: String,
+      required: true,
+    },
     // 編輯頁面的url
     editUrl: {
       type: String,
+      default: "",
     },
     // 刪除的url
     delUrl: {
       type: String,
+      default: "",
     },
     // 刪除的提醒說明
     delMsg: {
@@ -47,20 +59,22 @@ export default {
     },
     edit() {
       if (this.checkChanged()) {
-        this.$router.push(this.editUrl);
+        let url_base = this.editUrl == "" ? ApiUrl.getUrl(this.itemGroup, "edit") : this.editUrl;
+        this.$router.push(url_base + this.itemId);
       }
     },
     del() {
       if (confirm(this.delAlertStr)) {
         if (this.checkChanged()) {
+          let url_base = this.delUrl == "" ? ApiUrl.getUrl(this.itemGroup, "delete") : this.delUrl;
           AjaxService.delete(
-            this.delUrl,
+            url_base + this.itemId,
             (successResp) => {
-              console.log("刪除餐點類別成功!");
+              console.log("刪除成功!");
               window.location.reload();
             },
             (errorResp) => {
-              console.log("刪除餐點類別失敗!");
+              console.log("刪除失敗!");
               console.log(errorResp);
             }
           );
