@@ -82,10 +82,10 @@
 <script src="./MealCateEdit.js"></script>
 
 <style lang="scss" scoped>
-@import "~@coreui/coreui/scss/variables/colors";
+@import "@/assets/scss/variables";
 
 .cate-info {
-  background-color: $warning-25;
+  background-color: $warning-light;
 }
 .img-thumbnail {
   width: 120px;

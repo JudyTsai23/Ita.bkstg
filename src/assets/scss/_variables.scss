@@ -1,2 +1,36 @@
 // Variable overrides
+// --colors
+$primary: #548c50;
+$secondary: #593f58;
+$success: #30b69f;
+$info: #43a3cc;
+$warning: #f7ba59;
+$danger: #c96759;
+$light: #ced0c6;
+$dark: #2f3539;
+
+$primary-light: #cce0bb;
+$secondary-light: #cdbbcc;
+$success-light: #b1e3e4;
+$info-light: #a6ddf3;
+$warning-light: #fcefd8;
+$danger-light: #fabcb8;
+
+$theme-colors: (
+  "secondary": $secondary,
+  "primary-light": $primary-light,
+  "secondary-light": $secondary-light,
+  "success-light": $success-light,
+  "info-light": $info-light,
+  "warning-light": $warning-light,
+  "danger-light": $danger-light,
+);
+
+// --sidebar colors
+$sidebar-dark-bg: #324a3d;
+$sidebar-dark-brand-color: #afc29e;
+$sidebar-dark-nav-link-hover-bg: lighten($sidebar-dark-bg, 15%);
+
+// --compontents
+// ----tabs
 $nav-tabs-link-active-bg: #fff;

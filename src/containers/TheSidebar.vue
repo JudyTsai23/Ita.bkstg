@@ -52,8 +52,5 @@ export default {
   img {
     width: 40%;
   }
-  div {
-    color: #c3ffce;
-  }
 }
 </style>

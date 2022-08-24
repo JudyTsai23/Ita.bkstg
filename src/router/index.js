@@ -111,6 +111,17 @@ function configRoutes() {
       },
       children: [
         {
+          path: "colors",
+          name: "Color Reference",
+          component: () => import("@/containers/TheContainer"),
+          children: [
+            {
+              path: "",
+              component: () => import("@/views/pages/Color.vue"),
+            },
+          ],
+        },
+        {
           path: "404",
           name: "Page404",
           component: Page404,

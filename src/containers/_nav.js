@@ -75,6 +75,12 @@ export default [
         _children: ["測試參考用"],
       },
       {
+        _name: "CSidebarNavItem",
+        name: "Color Reference",
+        to: "/pages/colors",
+        icon: "cil-bell",
+      },
+      {
         _name: "CSidebarNavDropdown",
         name: "Pages",
         route: "/pages",
