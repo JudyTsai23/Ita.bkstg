@@ -39,33 +39,58 @@ function configRoutes() {
       children: [
         {
           path: "meal",
+          redirect: "meal", //因為有命名這個父路由，所以點擊breadcrumb時，會導向沒有顯示嵌套路由的這個父路由，因此要redirect重新進入meal頁面
           name: "餐點管理",
-          component: () => import("@/views/Management/Meal/Meal.vue"),
-        },
-        {
-          path: "meal/create",
-          name: "餐點-新增",
-          component: () => import("@/views/Management/Meal/MealEdit.vue"),
-        },
-        {
-          path: "meal/edit/:id",
-          name: "餐點-修改",
-          component: () => import("@/views/Management/Meal/MealEdit.vue"),
+          component: {
+            //等於直接createElement 產生"router-view"標籤，也就等於" template: `<router-view></router-view>` "
+            render(c) {
+              return c("router-view");
+            },
+          },
+          children: [
+            {
+              path: "", //空的嵌套路由 表示當父路由匹配成功時就會顯示這裡的內容
+              // name: "餐點列表", //不想在breadcrumb中出現，所以不命名此路由
+              component: () => import("@/views/Management/Meal/Meal.vue"),
+            },
+            {
+              path: "create",
+              name: "新增餐點",
+              component: () => import("@/views/Management/Meal/MealEdit.vue"),
+            },
+            {
+              path: "edit/:id",
+              name: "修改餐點",
+              component: () => import("@/views/Management/Meal/MealEdit.vue"),
+            },
+          ],
         },
         {
           path: "meal/cate",
+          redirect: "meal/cate",
           name: "餐點類別管理",
-          component: () => import("@/views/Management/MealCategory/MealCategory.vue"),
-        },
-        {
-          path: "meal/cate/create",
-          name: "餐點類別-新增",
-          component: () => import("@/views/Management/MealCategory/MealCateEdit.vue"),
-        },
-        {
-          path: "meal/cate/edit/:id",
-          name: "餐點類別-修改",
-          component: () => import("@/views/Management/MealCategory/MealCateEdit.vue"),
+          component: {
+            render(c) {
+              return c("router-view");
+            },
+          },
+          children: [
+            {
+              path: "",
+              // name: "餐點類別列表",
+              component: () => import("@/views/Management/MealCategory/MealCategory.vue"),
+            },
+            {
+              path: "create",
+              name: "新增餐點類別",
+              component: () => import("@/views/Management/MealCategory/MealCateEdit.vue"),
+            },
+            {
+              path: "edit/:id",
+              name: "修改餐點類別",
+              component: () => import("@/views/Management/MealCategory/MealCateEdit.vue"),
+            },
+          ],
         },
         {
           path: "news",
