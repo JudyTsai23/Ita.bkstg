@@ -9,6 +9,7 @@ export default {
     draggable,
     ProcessButtons,
   },
+  inject: ["reload"],
   data() {
     return {
       // 當前餐點類別ID
@@ -117,14 +118,14 @@ export default {
           });
         });
       });
-      console.log(sortData);
       let url = ApiUrl.getUrl("meal", "saveSort");
       AjaxService.put(
         url,
         sortData,
         (successResp) => {
           console.log("修改餐點排序成功!");
-          window.location.reload();
+          // TODO 刷新後應該要顯示同一類別
+          this.reload();
         },
         (errorResp) => {
           console.log("修改餐點排序失敗!");

@@ -1,35 +1,51 @@
 <template>
   <div class="c-app">
-    <TheSidebar/>
+    <TheSidebar />
     <CWrapper>
-      <TheHeader/>
+      <TheHeader />
       <div class="c-body">
         <main class="c-main">
           <CContainer fluid>
             <transition name="fade" mode="out-in">
-              <router-view :key="$route.path"></router-view>
+              <router-view v-if="isRouterAlive" :key="$route.path"></router-view>
             </transition>
           </CContainer>
         </main>
       </div>
-      <TheFooter/>
+      <TheFooter />
     </CWrapper>
   </div>
 </template>
 
 <script>
-import TheSidebar from './TheSidebar'
-import TheHeader from './TheHeader'
-import TheFooter from './TheFooter'
+import TheSidebar from "./TheSidebar";
+import TheHeader from "./TheHeader";
+import TheFooter from "./TheFooter";
 
 export default {
-  name: 'TheContainer',
+  name: "TheContainer",
   components: {
     TheSidebar,
     TheHeader,
-    TheFooter
-  }
-}
+    TheFooter,
+  },
+  provide() {
+    return {
+      reload: this.reload,
+    };
+  },
+  data() {
+    return {
+      isRouterAlive: true,
+    };
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(() => (this.isRouterAlive = true));
+    },
+  },
+};
 </script>
 
 <style scoped>

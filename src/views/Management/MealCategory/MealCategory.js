@@ -9,6 +9,7 @@ export default {
     draggable,
     ProcessButtons,
   },
+  inject: ["reload"],
   data() {
     return {
       // 所有餐點類別
@@ -113,7 +114,7 @@ export default {
         sortData,
         (successResp) => {
           console.log("修改餐點類別排序成功!");
-          window.location.reload();
+          this.reload();
         },
         (errorResp) => {
           console.log("修改餐點類別排序失敗!");

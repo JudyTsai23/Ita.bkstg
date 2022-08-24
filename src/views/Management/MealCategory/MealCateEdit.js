@@ -7,6 +7,7 @@ export default {
   components: {
     draggable,
   },
+  inject: ["reload"],
   data() {
     return {
       // 當前餐點類別ID
@@ -117,7 +118,7 @@ export default {
               url,
               (successResp) => {
                 console.log("刪除餐點子類別成功!");
-                window.location.reload();
+                this.reload();
               },
               (errorResp) => {
                 console.log("刪除餐點子類別失敗!");

@@ -42,6 +42,7 @@ export default {
       default: "",
     },
   },
+  inject: ["reload"],
   data() {
     return {};
   },
@@ -71,7 +72,7 @@ export default {
             url_base + this.itemId,
             (successResp) => {
               console.log("刪除成功!");
-              window.location.reload();
+              this.reload();
             },
             (errorResp) => {
               console.log("刪除失敗!");
