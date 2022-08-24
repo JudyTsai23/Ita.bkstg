@@ -17,7 +17,6 @@
     <div v-for="color in colors" :key="color" :class="`text-${color}`">培訓來說簡體和他，是他之後毫不有了證券窗口外面出席，圖像化，取得事務心理打了發言留言有什麼一個警。</div>
     <h5 class="mt-2">-light</h5>
     <div v-for="color in colors_light" :key="color" :class="`text-${color}`">培訓來說簡體和他，是他之後毫不有了證券窗口外面出席，圖像化，取得事務心理打了發言留言有什麼一個警。</div>
-    </div>
 
     <hr />
 
@@ -49,7 +48,6 @@
     <CBadge v-for="color in colors" :key="color" :color="color" class="mr-3 mb-3">{{ color }}</CBadge>
     <h5 class="mt-2">-light</h5>
     <CBadge v-for="color in colors_light" :key="color" :color="color" class="mr-3 mb-3">{{ color }}</CBadge>
-
   </CCard>
 </template>
 <script>
