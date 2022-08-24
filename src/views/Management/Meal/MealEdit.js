@@ -9,8 +9,10 @@ export default {
   },
   data() {
     return {
-      // 當前餐點類別ID
+      // 當前餐點ID
       currId: this.$route.params.id,
+      // 返回的URL
+      backTo: "/mngt/meal",
       // 當前餐點類別資料
       mealData: {
         id: "",
@@ -55,13 +57,14 @@ export default {
           if (successResp.restData) {
             let resultData = successResp.restData;
             // 處理期間限定的日期值
-            let limit_date = resultData.limitDate.toString();
-            let Y = limit_date.substr(0, 4),
-              M = limit_date.substr(4, 2),
-              D = limit_date.substr(6, 2);
-            limit_date = `${Y}-${M}-${D}`;
-            // 處理是否公開的值
-            let public_str = resultData.public ? "show" : "hidden";
+            let limit_date = "";
+            if (resultData.limitDate) {
+              limit_date = resultData.limitDate.toString();
+              let Y = limit_date.substr(0, 4),
+                M = limit_date.substr(4, 2),
+                D = limit_date.substr(6, 2);
+              limit_date = `${Y}-${M}-${D}`;
+            }
             // 最終資料
             this.mealData = {
               id: resultData.id,
@@ -74,9 +77,12 @@ export default {
               price: resultData.price,
               image: resultData.image,
               limit_date: limit_date,
-              public: public_str,
+              public: resultData.public,
             };
             console.log("查詢餐點成功!");
+
+            // "返回"按鈕的連結帶參數
+            this.backTo += `?cate=${this.mealData.category}`;
           }
         },
         (errorResp) => {
@@ -156,8 +162,6 @@ export default {
         let image = this.UploadImage != "" ? this.UploadImage : this.mealData.image;
         // 處理期間限定資料
         let limit_date = this.mealData.limit_date.replace(/-/g, "");
-        // 處理是否公開的值
-        let public_val = this.mealData.public == "show" ? true : false;
         // 最終資料
         let sendData = {
           id: this.mealData.id,
@@ -179,7 +183,7 @@ export default {
           sendData,
           (successResp) => {
             console.log("修改餐點類別成功!");
-            this.$router.push("/mngt/meal");
+            this.$router.push("/mngt/meal?cate=" + this.mealData.category);
           },
           (errorResp) => {
             console.log("修改餐點類別失敗!");
@@ -192,34 +196,63 @@ export default {
   },
   computed: {
     currSubCateList() {
-      let subList = this.mealSubCateList[this.mealData.category];
-      if (subList === undefined) {
+      let subList = [];
+      let data = this.mealSubCateList[this.mealData.category];
+      if (this.mealData.category == "") {
         subList = [
-          // {
-          //   value: '',
-          //   label: '請先選擇類別',
-          //   disabled: true,
-          // },
+          {
+            value: "none",
+            label: "請先選擇大類別",
+            disabled: true,
+          },
+        ];
+      } else if (data === undefined) {
+        subList = [
+          {
+            value: "0", // FIXME 確認後端做法後再調整
+            label: "無",
+            attrs: "selected",
+          },
         ];
       } else {
-        // subList = subList.map((item) => {
-        //   let sub = {
-        //     value: item.id,
-        //     label: item.zhName,
-        //   };
-        //   return sub;
-        // });
+        // FIXME 確認後端做法後再調整
+        subList = data.map((item) => {
+          let sub = {
+            value: "0",
+            label: item,
+          };
+          return sub;
+        });
       }
       return subList;
     },
     priceInvalidStr() {
       return this.mealData.price == "" ? "必填" : "不可為負值";
     },
-    UploadImageSelectedStr() {
+    uploadImageSelectedStr() {
       if (this.UploadImageName == "") {
         return "尚未選擇檔案";
       }
       return this.UploadImageName;
+    },
+    // 預覽圖片區塊的小標題
+    imagePreviewTitle() {
+      if (this.mealData.image && !this.UploadImage) {
+        return "現有照片";
+      }
+      if (this.UploadImage) {
+        return "上傳預覽";
+      }
+    },
+    // 預覽圖片的src
+    imagePreviewSrc() {
+      // FIXME 圖檔位置待確認
+      if (this.mealData.image && !this.UploadImage) {
+        return this.mealData.image;
+      }
+      if (this.UploadImage) {
+        return this.UploadImage;
+      }
     },
   },
 };

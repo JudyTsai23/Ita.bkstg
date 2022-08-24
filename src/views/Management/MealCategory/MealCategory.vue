@@ -6,6 +6,14 @@
     </CCardHeader>
 
     <CCardBody>
+      <!-- 提醒訊息 -->
+      <CAlert color="info" closeButton>
+        拖曳前方的
+        <span class="border border-dark px-1"><CIcon name="cil-elevator" class="align-text-bottom" /></span>
+        來進行排序，修改後請按下方的
+        <span class="border border-dark rounded px-1">儲存排序</span>
+        。
+      </CAlert>
       <draggable tag="ul" :list="mealCateList" handle=".move-icon" :animation="200" @change="changed = true" class="list-unstyled px-4">
         <transition-group name="flip-list">
           <li v-for="cate in mealCateList" :key="cate.id" class="row border mb-3">

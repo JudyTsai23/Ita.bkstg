@@ -174,11 +174,31 @@ export default {
       return this.mealCateData.subCateList;
     },
     // 選擇檔案所顯示的文字
-    UploadImageSelectedStr() {
+    uploadImageSelectedStr() {
       if (this.UploadImageName == "") {
         return "尚未選擇檔案";
       }
       return this.UploadImageName;
+    },
+    // 預覽圖片區塊的小標題
+    imagePreviewTitle() {
+      if (this.mealCateData.icon && !this.UploadImage) {
+        return "現有圖示";
+      }
+      if (this.UploadImage) {
+        return "上傳預覽";
+      }
+    },
+    // 預覽圖片的src
+    imagePreviewSrc() {
+      // FIXME 圖檔位置待確認
+      if (this.mealCateData.icon && !this.UploadImage) {
+        return "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/344/external-image-interface-kiranshastry-lineal-kiranshastry-1.png";
+      }
+      if (this.UploadImage) {
+        return this.UploadImage;
+      }
+      return "";
     },
   },
 };

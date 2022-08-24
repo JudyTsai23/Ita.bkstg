@@ -33,7 +33,7 @@ export default {
     init() {
       this.getMealCateList();
     },
-    // 取得所有餐點類別
+    // 取得所有餐點類別，並取得目前類別的所有餐點(執行getMealList)
     getMealCateList() {
       let url = ApiUrl.getUrl("mealCate", "getAll");
       AjaxService.get(
@@ -49,7 +49,9 @@ export default {
               return cate;
             });
             console.log("查詢餐點類別成功!");
-            this.currCateId = this.mealCateList[0].id;
+            // 是否有需要顯示的類別，若無則顯示第一個類別
+            let currCate = this.$route.query.cate;
+            this.currCateId = currCate ? currCate : this.mealCateList[0].id;
             this.getMealList();
           }
         },

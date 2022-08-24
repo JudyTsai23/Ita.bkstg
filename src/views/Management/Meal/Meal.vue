@@ -15,10 +15,20 @@
       </ul>
       <!-- 提醒訊息 -->
       <CAlert color="info" closeButton>
-        如需更換餐點所屬的子類別，請點擊該餐點的
-        <span class="border border-dark rounded px-1">編輯</span>
-        按鈕前往頁面進行修改
+        <p>
+          拖曳前方的
+          <span class="border border-dark px-1"><CIcon name="cil-elevator" class="align-text-bottom" /></span>
+          來進行排序，修改後請按下方的
+          <span class="border border-dark rounded px-1">儲存排序</span>
+          。
+        </p>
+        <p class="mb-0">
+          如需更換餐點所屬的子類別，請點擊該餐點的
+          <span class="border border-dark rounded px-1">編輯</span>
+          按鈕前往頁面進行修改。
+        </p>
       </CAlert>
+      <p v-show="mealList.length == 0" class="text-muted text-center my-4">此類別中尚無餐點</p>
       <!-- 各個餐點子類別 -->
       <div v-for="subCate in mealList" :key="`subCate${subCate.subCateId}`">
         <p class="h4 font-weight-bold mt-4">
