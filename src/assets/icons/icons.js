@@ -74,6 +74,8 @@ import {
   cilBullhorn,
   cilListNumbered,
   cilLeaf,
+  cilHttps,
+  cilUserUnfollow,
 } from "@coreui/icons";
 import { cilElevator, cilCaretBottom, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
 import { logo } from "./logo";
@@ -131,6 +133,8 @@ export const iconsSet = Object.assign(
     cilBullhorn,
     cilListNumbered,
     cilLeaf,
+    cilHttps,
+    cilUserUnfollow,
   },
   {
     cifUs,
