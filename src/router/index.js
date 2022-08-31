@@ -9,12 +9,24 @@ const Register = () => import("@/views/pages/Register");
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes(),
 });
+
+router.beforeEach((to, from, next) => {
+  let isLogin = sessionStorage.getItem("il");
+  if ((!isLogin || isLogin === null || isLogin === "null") && to.path !== "/login") {
+    // 尚未登入則跳轉至登入頁面
+    next({ path: "/login" });
+  } else {
+    next();
+  }
+});
+
+export default router;
 
 function configRoutes() {
   return [
@@ -32,8 +44,13 @@ function configRoutes() {
       ],
     },
     {
+      path: "/login",
+      name: "登入",
+      component: () => import("@/views/Login/Login.vue"),
+    },
+    {
       path: "/mngt",
-      redirect: "/meal",
+      redirect: "/mngt/meal",
       name: "內容管理",
       component: () => import("@/containers/TheContainer"),
       children: [
@@ -101,7 +118,7 @@ function configRoutes() {
     },
     {
       path: "/st",
-      redirect: "/basic",
+      redirect: "/st/basic",
       name: "設定",
       component: () => import("@/containers/TheContainer"),
       children: [
@@ -114,7 +131,7 @@ function configRoutes() {
     },
     {
       path: "/anly",
-      redirect: "/feedback",
+      redirect: "/anly/feedback",
       name: "圖表分析",
       component: () => import("@/containers/TheContainer"),
       children: [
