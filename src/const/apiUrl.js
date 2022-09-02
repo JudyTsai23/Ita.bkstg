@@ -16,6 +16,12 @@ const api = {
     delete: "/server/mealCate/", //+ID
     deleteSub: "/server/mealCate/sub/", //+餐點子類別ID
   },
+  news: {
+    getAll: "/server/news",
+    getOne: "/server/news/mng/", //+ID
+    save: "/server/news/save",
+    delete: "/server/news/", //+ID
+  },
 };
 const apiUrl = {
   // 取得對應的種類名稱

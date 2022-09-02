@@ -111,8 +111,30 @@ function configRoutes() {
         },
         {
           path: "news",
+          redirect: "news",
           name: "訊息管理",
-          component: () => import("@/views/Management/News/News.vue"),
+          component: {
+            render(c) {
+              return c("router-view");
+            },
+          },
+          children: [
+            {
+              path: "",
+              // name: "訊息列表",
+              component: () => import("@/views/Management/News/News.vue"),
+            },
+            {
+              path: "create",
+              name: "新增訊息",
+              component: () => import("@/views/Management/News/NewsEdit.vue"),
+            },
+            {
+              path: "edit/:id",
+              name: "修改訊息",
+              component: () => import("@/views/Management/News/NewsEdit.vue"),
+            },
+          ],
         },
       ],
     },
