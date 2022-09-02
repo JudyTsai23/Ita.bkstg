@@ -39,6 +39,7 @@ export default {
     },
     // 取得當前餐點資料
     getNewsData() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("news", "getOne") + this.currId;
       AjaxService.get(
         url,
@@ -66,6 +67,7 @@ export default {
               public: resultData.public,
               top: resultData.top,
             };
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點成功!");
           }
         },

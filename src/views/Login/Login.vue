@@ -50,6 +50,7 @@
       <!-- <div class="d-flex flex-column">
       </div> -->
     </div>
+    <CElementCover v-if="$store.state.globalLoading" :opacity="0.8" />
   </div>
 </template>
 <script src="./Login.js"></script>

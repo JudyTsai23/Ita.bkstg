@@ -14,6 +14,7 @@ export default {
     login() {
       const form = document.querySelector("#loginForm");
       if (form.checkValidity() === true) {
+        this.$store.commit("set", ["globalLoading", true]);
         let loginData = {
           acct: this.acct,
           pxd: this.pxd,
@@ -23,9 +24,9 @@ export default {
           loginData,
           (successResp) => {
             if (successResp.restData) {
-              // TODO globalLoading
               let loginResult = successResp.restData.login;
               if (loginResult) {
+                this.$store.commit("set", ["globalLoading", false]);
                 console.log("登入成功");
                 sessionStorage.setItem("il", true);
                 this.$router.push({ name: "內容管理" });

@@ -40,6 +40,7 @@ export default {
     },
     // 取得所有訊息
     getNewsList() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("news", "getAll");
       AjaxService.get(
         url,
@@ -56,6 +57,7 @@ export default {
 
               return item;
             });
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢訊息成功!");
           }
         },

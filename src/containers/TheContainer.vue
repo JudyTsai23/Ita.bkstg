@@ -3,7 +3,7 @@
     <TheSidebar />
     <CWrapper>
       <TheHeader />
-      <div class="c-body">
+      <div class="c-body position-relative">
         <main class="c-main">
           <CContainer fluid>
             <transition name="fade" mode="out-in">
@@ -11,6 +11,7 @@
             </transition>
           </CContainer>
         </main>
+        <CElementCover v-if="$store.state.globalLoading" :opacity="0.8" :boundaries="[{ sides: ['top', 'left'], query: '.c-main' }]" />
       </div>
       <TheFooter />
     </CWrapper>

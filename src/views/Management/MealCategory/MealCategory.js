@@ -32,6 +32,7 @@ export default {
     },
     // 取得所有餐點類別
     getMealCateList() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("mealCate", "getAll");
       AjaxService.get(
         url,
@@ -47,6 +48,7 @@ export default {
               };
               return cate;
             });
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點類別成功!");
           }
         },
@@ -58,12 +60,14 @@ export default {
     },
     // 取得所有餐點子類別
     getMealSubCateList() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("mealCate", "getAllSub");
       AjaxService.get(
         url,
         (successResp) => {
           if (successResp.restData) {
             this.mealSubCateList = successResp.restData;
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點子類別成功!");
           }
         },

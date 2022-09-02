@@ -36,6 +36,7 @@ export default {
     },
     // 取得所有餐點類別，並取得目前類別的所有餐點(執行getMealList)
     getMealCateList() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("mealCate", "getAll");
       AjaxService.get(
         url,
@@ -54,6 +55,7 @@ export default {
             let currCate = this.$route.query.cate;
             this.currCateId = currCate ? currCate : this.mealCateList[0].id;
             this.getMealList();
+            this.$store.commit("set", ["globalLoading", false]);
           }
         },
         (errorResp) => {
@@ -64,12 +66,14 @@ export default {
     },
     // 取得當前類別的所有餐點
     getMealList() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("meal", "getAll") + this.currCateId;
       AjaxService.get(
         url,
         (successResp) => {
           if (successResp.restData) {
             this.mealList = successResp.restData;
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點成功!");
           }
         },

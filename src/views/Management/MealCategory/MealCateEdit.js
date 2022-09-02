@@ -40,6 +40,7 @@ export default {
     },
     // 取得當前餐點類別資料
     getMealCateData() {
+      this.$store.commit("set", ["globalLoading", true]);
       let url = ApiUrl.getUrl("mealCate", "getOne") + this.currId;
       AjaxService.get(
         url,
@@ -54,6 +55,7 @@ export default {
               sort: resultData.sort,
               subCateList: resultData.subCateList,
             };
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點類別成功!");
           }
         },
