@@ -37,6 +37,8 @@ export default {
               console.log("登入失敗");
               let loginResult = errorResp.restData.login;
               this.loginFail = !loginResult;
+            } else {
+              console.log(errorResp);
             }
           }
         );
