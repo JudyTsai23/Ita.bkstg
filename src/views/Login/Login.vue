@@ -11,7 +11,7 @@
                   <img class="logo" src="@/assets/img/logo/logo-rmbg.png" />
                   <!-- <h1 class="text-dark">Ms.Ita</h1> -->
                   <!-- </div> -->
-                  <h2 class="text-secondary">Login</h2>
+                  <h2 class="text-primary">Login</h2>
                 </div>
                 <CInput placeholder="Email" invalidFeedback="必填" :value.sync="acct" required>
                   <template #prepend-content><CIcon name="cil-user" /></template>
@@ -27,10 +27,10 @@
                 </CAlert>
                 <CRow>
                   <CCol col="6" class="mt-2 text-left">
-                    <CButton color="primary" class="px-4" @click="login()">Login</CButton>
+                    <CButton color="link" class="px-0" v-c-tooltip="{ content: '在下面哦!', placement: 'bottom' }">Forgot password?</CButton>
                   </CCol>
                   <CCol col="6" class="text-right">
-                    <CButton color="link" class="px-0" v-c-tooltip="{ content: '在下面哦!', placement: 'bottom' }">Forgot password?</CButton>
+                    <CButton color="primary" class="px-4" @click="login()">Login</CButton>
                   </CCol>
                 </CRow>
               </CForm>
