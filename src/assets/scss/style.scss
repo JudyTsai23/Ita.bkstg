@@ -7,6 +7,11 @@
 // If you want to add something do it here
 @import "custom";
 
+body {
+  font-family: "Libre Baskerville";
+  letter-spacing: 0.5px;
+}
+
 .card-header:not(.content-center) > .c-icon:first-child {
   margin-right: 0.1rem;
   margin-top: 0.1rem;
