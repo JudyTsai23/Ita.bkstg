@@ -31,19 +31,6 @@ export default router;
 function configRoutes() {
   return [
     {
-      path: "/",
-      redirect: "/dashboard",
-      name: "首頁",
-      component: () => import("@/containers/TheContainer"),
-      children: [
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: () => import("@/views/Dashboard"),
-        },
-      ],
-    },
-    {
       path: "/login",
       name: "登入",
       component: () => import("@/views/Login/Login.vue"),

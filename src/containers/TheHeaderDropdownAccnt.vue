@@ -2,46 +2,15 @@
   <CDropdown inNav class="c-header-nav-items" placement="bottom-end" add-menu-classes="pt-0">
     <template #toggler>
       <CHeaderNavLink>
-        <div class="c-avatar mb-1">
-          <img src="img/avatars/user.png" class="c-avatar-img user" />
+        <div class="c-avatar my-1">
+          <img src="@/assets/img/user.png" class="c-avatar-img user" />
         </div>
       </CHeaderNavLink>
     </template>
-    <CDropdownHeader tag="div" class="text-center" color="light">
+    <CDropdownHeader tag="div" class="text-center" color="primary-light">
       <strong>Account</strong>
     </CDropdownHeader>
-    <CDropdownItem>
-      <CIcon name="cil-bell" /> Updates
-      <CBadge color="info" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-envelope-open" /> Messages
-      <CBadge color="success" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-task" /> Tasks
-      <CBadge color="danger" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-comment-square" /> Comments
-      <CBadge color="warning" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownHeader tag="div" class="text-center" color="light">
-      <strong>Settings</strong>
-    </CDropdownHeader>
-    <CDropdownItem> <CIcon name="cil-user" /> Profile </CDropdownItem>
-    <CDropdownItem> <CIcon name="cil-settings" /> Settings </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-dollar" /> Payments
-      <CBadge color="secondary" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-file" /> Projects
-      <CBadge color="primary" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownDivider />
-    <CDropdownItem> <CIcon name="cil-shield-alt" /> Lock Account </CDropdownItem>
-    <CDropdownItem> <CIcon name="cil-lock-locked" /> Logout </CDropdownItem>
+    <CDropdownItem class="d-flex align-items-center" @click="logout()"> <CIcon class="mr-3" name="cil-https" /> Logout </CDropdownItem>
   </CDropdown>
 </template>
 
@@ -49,9 +18,15 @@
 export default {
   name: "TheHeaderDropdownAccnt",
   data() {
-    return {
-      itemsCount: 42,
-    };
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$store.commit("set", ["globalLoading", true]);
+      sessionStorage.removeItem("il");
+      this.$router.push({ name: "登入" });
+      this.$store.commit("set", ["globalLoading", false]);
+    },
   },
 };
 </script>
