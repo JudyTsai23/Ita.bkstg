@@ -8,9 +8,6 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    this.$store.dispatch("queryMenuCategory");
-  },
 };
 </script>
 

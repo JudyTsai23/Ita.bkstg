@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import AjaxService from "@/services/ajaxService.js";
 Vue.use(Vuex);
 
 const state = {
