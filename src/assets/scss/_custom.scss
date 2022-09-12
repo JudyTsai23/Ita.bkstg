@@ -21,10 +21,12 @@
 .form-control {
   color: #000 !important;
 }
-.custom-file-label {
+.form-row .custom-file-label {
   margin-left: 5px;
   margin-right: 5px;
-  &::after {
-    content: "瀏覽";
-  }
+  word-wrap: normal;
+  overflow: hidden;
+}
+.custom-file-label::after {
+  content: "瀏覽";
 }

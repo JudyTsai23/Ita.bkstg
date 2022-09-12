@@ -60,21 +60,7 @@
           </template>
         </CInput>
         <!-- 照片 -->
-        <CInputFile label="照片" :placeholder="uploadImageSelectedStr" custom horizontal :required="mealData.image == ''" accept="image/*" @change="getUploadImage" id="photoInput" class="form-group">
-          <template #label>
-            <span class="col-sm-3 col-form-label">
-              照片
-              <span class="text-danger">*</span>
-            </span>
-          </template>
-          <!-- --照片預覽-- -->
-          <template #description>
-            <div v-show="imagePreviewSrc" class="mt-2">
-              <small class="d-block">{{ imagePreviewTitle }}</small>
-              <label for="photoInput"><img :src="imagePreviewSrc" alt="" class="img-thumbnail" /></label>
-            </div>
-          </template>
-        </CInputFile>
+        <ImageInput label="照片" horizontal :limitSize="300" limitUnit="KB" maxPreview="300px" :oldImage="mealData.image" :value.sync="UploadImage" />
         <!-- 限定日期欄位 -->
         <CInput type="date" label="限定日期" placeholder="請選擇期間限定之餐點的下架日期" description="此為期間限定的下架時間，若非限定餐點，則須清除日期。" v-model="mealData.limit_date" horizontal />
         <!-- 是否公開 -->
@@ -118,9 +104,5 @@
       max-width: 100px;
     }
   }
-}
-.img-thumbnail {
-  max-height: 300px;
-  width: auto;
 }
 </style>

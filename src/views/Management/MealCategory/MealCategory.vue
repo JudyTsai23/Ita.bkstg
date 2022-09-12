@@ -30,12 +30,7 @@
               <CRow>
                 <CCol sm="4" md="3" class="mb-3 mb-sm-0">
                   圖示：
-                  <!-- FIXME 圖檔位置 -->
-                  <img
-                    src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/344/external-image-interface-kiranshastry-lineal-kiranshastry-1.png"
-                    alt=""
-                    class="img-thumbnail bg-white align-top"
-                  />
+                  <img :src="cate.icon" alt="" class="img-thumbnail bg-white align-top" />
                 </CCol>
                 <CCol sm="8" md="9" class="pb-4">
                   <p>

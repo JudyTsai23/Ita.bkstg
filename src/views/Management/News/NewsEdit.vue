@@ -16,28 +16,7 @@
         <!-- 內文欄位 -->
         <CTextarea label="內文" placeholder="請撰寫訊息內容" invalidFeedback="必填" v-model="newsData.content" horizontal required rows="6" />
         <!-- 封面圖片 -->
-        <CInputFile
-          label="封面圖片"
-          :placeholder="uploadImageSelectedStr"
-          custom
-          horizontal
-          :required="newsData.image == ''"
-          accept="image/*"
-          @change="getUploadImage"
-          id="photoInput"
-          class="form-group"
-        >
-          <template #label>
-            <span class="col-sm-3 col-form-label">封面圖片</span>
-          </template>
-          <!-- --封面圖片預覽-- -->
-          <template #description>
-            <div v-show="imagePreviewSrc" class="mt-2">
-              <small class="d-block">{{ imagePreviewTitle }}</small>
-              <label for="photoInput"><img :src="imagePreviewSrc" alt="" class="img-thumbnail" /></label>
-            </div>
-          </template>
-        </CInputFile>
+        <ImageInput label="封面圖片" horizontal :limitSize="300" limitUnit="KB" maxPreview="300px" :oldImage="newsData.image" :value.sync="UploadImage" />
         <!-- 發布日期欄位 -->
         <CInput type="date" label="發布日期" placeholder="請選擇訊息公開發布的日期" v-model="newsData.publish_date" horizontal required />
         <!-- 是否公開 -->
@@ -88,9 +67,5 @@
       max-width: 100px;
     }
   }
-}
-.img-thumbnail {
-  max-height: 300px;
-  width: auto;
 }
 </style>

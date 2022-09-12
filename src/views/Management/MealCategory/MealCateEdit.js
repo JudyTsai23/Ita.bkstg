@@ -1,11 +1,13 @@
 import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 import draggable from "vuedraggable";
+import ImageInput from "@/components/ImageInput";
 
 export default {
   name: "MealCateEdit",
   components: {
     draggable,
+    ImageInput,
   },
   inject: ["reload"],
   data() {
@@ -23,8 +25,6 @@ export default {
       },
       // 上傳的圖片(base64字串)
       UploadImage: "",
-      // 上傳的圖片檔名
-      UploadImageName: "",
       // 是否曾經改動過
       changed: false,
     };
@@ -77,27 +77,6 @@ export default {
       // 未曾修改=>確定離開
       return true;
     },
-    // 檔案上傳與圖片預覽
-    getUploadImage(e) {
-      // const file = e.target.files.item(0);
-      // --(CInputFile傳過來的已經是e.target.files)
-      const file = e.item(0);
-      if (!file) {
-        this.UploadImage = "";
-        this.UploadImageName = "";
-      } else {
-        //--建立 reader 變數為一個檔案讀取器物件
-        this.UploadImageName = file.name;
-        const reader = new FileReader();
-        //--先準備好讀取器讀取檔案後要執行的工作
-        reader.addEventListener("load", (e) => {
-          //----將 e.target.result (也就是讀取器接收到的檔案資訊)存入data
-          this.UploadImage = e.target.result;
-        });
-        //--讀取器讀取上傳的檔案內容
-        reader.readAsDataURL(file);
-      }
-    },
     // 增加子類別
     addSubCate() {
       this.subCateList.push({
@@ -137,22 +116,22 @@ export default {
     save() {
       const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
+        // 處理子類別排序
         let subData = this.subCateList.map((item, idx) => {
           item.sort = idx + 1;
           return item;
         });
+        // 處理圖片資料
+        let image = this.UploadImage != "" ? this.UploadImage : this.mealCateData.icon;
+        // 最終資料
         let sendData = {
           id: this.mealCateData.id,
           name: this.mealCateData.name,
           zhName: this.mealCateData.name_zh,
-          icon: this.mealCateData.icon,
+          icon: image,
           sort: this.mealCateData.sort,
           subCateList: subData,
         };
-        if (this.UploadImage != "") {
-          // --用base64字串的方式上傳圖片
-          this.mealCateData.icon = this.UploadImage;
-        }
 
         let url = ApiUrl.getUrl("mealCate", "save");
         AjaxService.post(
@@ -175,33 +154,6 @@ export default {
     // 餐點子類別
     subCateList() {
       return this.mealCateData.subCateList;
-    },
-    // 選擇檔案所顯示的文字
-    uploadImageSelectedStr() {
-      if (this.UploadImageName == "") {
-        return "尚未選擇檔案";
-      }
-      return this.UploadImageName;
-    },
-    // 預覽圖片區塊的小標題
-    imagePreviewTitle() {
-      if (this.mealCateData.icon && !this.UploadImage) {
-        return "現有圖示";
-      }
-      if (this.UploadImage) {
-        return "上傳預覽";
-      }
-    },
-    // 預覽圖片的src
-    imagePreviewSrc() {
-      // FIXME 圖檔位置待確認
-      if (this.mealCateData.icon && !this.UploadImage) {
-        return "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/344/external-image-interface-kiranshastry-lineal-kiranshastry-1.png";
-      }
-      if (this.UploadImage) {
-        return this.UploadImage;
-      }
-      return "";
     },
   },
 };

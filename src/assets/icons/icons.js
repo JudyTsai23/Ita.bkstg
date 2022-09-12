@@ -77,7 +77,7 @@ import {
   cilHttps,
   cilUserUnfollow,
 } from "@coreui/icons";
-import { cilElevator, cilCaretBottom, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
+import { cilElevator, cilCaretBottom, cilX, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
 import { logo } from "./logo";
 
 export const iconsSet = Object.assign(
@@ -173,6 +173,7 @@ export const iconsSet = Object.assign(
     cilElevator,
     cilCaretBottom,
     cilTrash,
+    cilX,
     cilPlaylistAdd,
     cilBolt,
   }

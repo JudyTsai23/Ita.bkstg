@@ -1,11 +1,13 @@
 import ApiUrl from "@/const/apiUrl.js";
 import AjaxService from "@/services/ajaxService.js";
 import draggable from "vuedraggable";
+import ImageInput from "@/components/ImageInput";
 
 export default {
   name: "MealEdit",
   components: {
     draggable,
+    ImageInput,
   },
   data() {
     return {
@@ -33,7 +35,6 @@ export default {
       mealSubCateList: [],
       // 上傳的圖片(base64字串)
       UploadImage: "",
-      UploadImageName: "",
     };
   },
   mounted() {
@@ -138,28 +139,6 @@ export default {
         }
       );
     },
-    // 檔案上傳與圖片預覽
-    getUploadImage(e) {
-      // const file = e.target.files.item(0);
-      // --(CInputFile傳過來的已經是e.target.files)
-      const file = e.item(0);
-      if (!file) {
-        this.UploadImage = "";
-        this.UploadImageName = "";
-      } else {
-        //--建立 reader 變數為一個檔案讀取器物件
-        this.UploadImageName = file.name;
-        const reader = new FileReader();
-        //--先準備好讀取器讀取檔案後要執行的工作
-        reader.addEventListener("load", (e) => {
-          //----將 e.target.result (也就是讀取器接收到的檔案資訊)存入data
-          this.UploadImage = e.target.result;
-        });
-        console.log(this.UploadImage);
-        //--讀取器讀取上傳的檔案內容
-        reader.readAsDataURL(file);
-      }
-    },
     // 送出資料儲存
     save() {
       const form = document.querySelector("#updateForm");
@@ -234,31 +213,6 @@ export default {
     },
     priceInvalidStr() {
       return this.mealData.price == "" ? "必填" : "不可為負值";
-    },
-    uploadImageSelectedStr() {
-      if (this.UploadImageName == "") {
-        return "尚未選擇檔案";
-      }
-      return this.UploadImageName;
-    },
-    // 預覽圖片區塊的小標題
-    imagePreviewTitle() {
-      if (this.mealData.image && !this.UploadImage) {
-        return "現有照片";
-      }
-      if (this.UploadImage) {
-        return "上傳預覽";
-      }
-    },
-    // 預覽圖片的src
-    imagePreviewSrc() {
-      // FIXME 圖檔位置待確認
-      if (this.mealData.image && !this.UploadImage) {
-        return this.mealData.image;
-      }
-      if (this.UploadImage) {
-        return this.UploadImage;
-      }
     },
   },
 };
