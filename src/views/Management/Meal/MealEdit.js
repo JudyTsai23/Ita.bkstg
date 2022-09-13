@@ -184,11 +184,12 @@ export default {
   computed: {
     currSubCateList() {
       let subList = [];
-      let data = this.mealSubCateList[this.mealData.category];
+      let data = this.mealSubCateList.find((item) => item.categoryId === this.mealData.category);
+
       if (this.mealData.category == "") {
         subList = [
           {
-            value: "none",
+            value: "_",
             label: "請先選擇大類別",
             disabled: true,
           },
@@ -196,21 +197,20 @@ export default {
       } else if (data === undefined) {
         subList = [
           {
-            value: "0", // FIXME 確認後端做法後再調整
+            value: 0,
             label: "無",
-            attrs: "selected",
           },
         ];
       } else {
-        // FIXME 確認後端做法後再調整
-        subList = data.map((item) => {
+        subList = data.subCateList.map((item) => {
           let sub = {
-            value: "0",
-            label: item,
+            value: item.id,
+            label: item.name,
           };
           return sub;
         });
       }
+      console.log(this.mealData.sub_category);
       return subList;
     },
     priceInvalidStr() {

@@ -66,7 +66,11 @@ export default {
         url,
         (successResp) => {
           if (successResp.restData) {
-            this.mealSubCateList = successResp.restData;
+            // this.mealSubCateList = successResp.restData;
+            successResp.restData.forEach((item) => {
+              this.mealSubCateList[item.categoryId] = item.subCateList;
+            });
+            console.log(this.mealSubCateList);
             this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點子類別成功!");
           }
@@ -76,6 +80,10 @@ export default {
           console.log(errorResp);
         }
       );
+    },
+    // 取得當前餐點類別的子類別
+    currSubCateList(id) {
+      return this.mealSubCateList.find((item) => item.categoryId === id);
     },
     // 切換餐點類別展開的項目
     activeCateChanged(id) {

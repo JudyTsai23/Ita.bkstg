@@ -17,7 +17,6 @@
           </CCol>
           <CCol sm="9" class="form-row mx-0">
             <CSelect placeholder="請選擇類別" invalidFeedback="必填" v-model="mealData.category" required :options="mealCateList" class="col-6 pl-0 pr-1" />
-            <!-- FIXME currSubCateList沒有id -->
             <CSelect placeholder="請選擇子類別" invalidFeedback="必填" v-model="mealData.sub_category" required :options="currSubCateList" class="col-6 pl-1 pr-0" />
           </CCol>
         </CRow>
