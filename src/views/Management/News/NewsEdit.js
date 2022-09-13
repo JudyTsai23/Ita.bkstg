@@ -91,6 +91,7 @@ export default {
     save() {
       const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
+        this.$store.commit("set", ["globalLoading", true]);
         // 處理圖片資料
         let image = this.UploadImage != "" ? this.UploadImage : this.newsData.image;
         // 處理發布時間資料
@@ -107,12 +108,12 @@ export default {
           public: this.newsData.public,
           top: this.newsData.top,
         };
-
         let url = ApiUrl.getUrl("news", "save");
         AjaxService.post(
           url,
           sendData,
           (successResp) => {
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("修改訊息成功!");
             this.$router.push("/mngt/news");
           },

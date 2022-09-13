@@ -113,6 +113,7 @@ export default {
     },
     // 送出排序資料儲存
     saveSort() {
+      this.$store.commit("set", ["globalLoading", true]);
       let sortData = [];
       this.mealList.forEach((subCute) => {
         subCute.meals.forEach((item, idx) => {
@@ -127,6 +128,7 @@ export default {
         url,
         sortData,
         (successResp) => {
+          this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點排序成功!");
           // TODO 刷新後應該要顯示同一類別
           this.reload();

@@ -11,10 +11,10 @@
             </transition>
           </CContainer>
         </main>
-        <CElementCover v-if="$store.state.globalLoading" :opacity="0.8" :boundaries="[{ sides: ['top', 'left'], query: '.c-main' }]" />
       </div>
       <TheFooter />
     </CWrapper>
+    <CElementCover v-if="$store.state.globalLoading" :opacity="0.8" class="position-fixed" style="z-index: 1030" />
   </div>
 </template>
 

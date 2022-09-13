@@ -94,10 +94,12 @@ export default {
       if (this.subCateList[idx].id != "") {
         if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？")) {
           if (this.checkChanged()) {
+            this.$store.commit("set", ["globalLoading", true]);
             let url = ApiUrl.getUrl("mealCate", "deleteSub") + this.subCateList[idx].id;
             AjaxService.delete(
               url,
               (successResp) => {
+                this.$store.commit("set", ["globalLoading", false]);
                 console.log("刪除餐點子類別成功!");
                 this.reload();
               },
@@ -116,6 +118,7 @@ export default {
     save() {
       const form = document.querySelector("#updateForm");
       if (form.checkValidity() === true) {
+        this.$store.commit("set", ["globalLoading", true]);
         // 處理子類別排序
         let subData = this.subCateList.map((item, idx) => {
           item.sort = idx + 1;
@@ -138,6 +141,7 @@ export default {
           url,
           sendData,
           (successResp) => {
+            this.$store.commit("set", ["globalLoading", false]);
             console.log("修改餐點類別成功!");
             this.$router.push("/mngt/meal/cate");
           },

@@ -67,10 +67,12 @@ export default {
     del() {
       if (confirm(this.delAlertStr)) {
         if (this.checkChanged()) {
+          this.$store.commit("set", ["globalLoading", true]);
           let url_base = this.delUrl == "" ? ApiUrl.getUrl(this.itemGroup, "delete") : this.delUrl;
           AjaxService.delete(
             url_base + this.itemId,
             (successResp) => {
+              this.$store.commit("set", ["globalLoading", false]);
               console.log("刪除成功!");
               this.reload();
             },

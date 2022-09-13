@@ -105,6 +105,7 @@ export default {
     },
     // 送出排序資料儲存
     saveSort() {
+      this.$store.commit("set", ["globalLoading", true]);
       let sortData = this.mealCateList.map((item, idx) => {
         let data = {
           id: item.id,
@@ -117,6 +118,7 @@ export default {
         url,
         sortData,
         (successResp) => {
+          this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點類別排序成功!");
           this.reload();
         },
