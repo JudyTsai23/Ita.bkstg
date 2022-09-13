@@ -106,7 +106,6 @@ export default {
           publishDate: publish_date,
           public: this.newsData.public,
           top: this.newsData.top,
-          updUser: "Judy",
         };
 
         let url = ApiUrl.getUrl("news", "save");
