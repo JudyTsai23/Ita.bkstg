@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-list-numbered" />
+      <CIcon name="cil-list-numbered" class="mt-0" />
       餐點類別管理
     </CCardHeader>
 

@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-bullhorn" />
+      <CIcon name="cil-bullhorn" class="mt-0" />
       訊息管理
     </CCardHeader>
 

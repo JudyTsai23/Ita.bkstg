@@ -83,6 +83,14 @@ export default {
         }
       );
     },
+    // 處理期間限定的日期值
+    limitDateFormat(date) {
+      let limit_date = date.toString();
+      let Y = limit_date.substr(0, 4),
+        M = limit_date.substr(4, 2),
+        D = limit_date.substr(6, 2);
+      return `${Y}.${M}.${D}`;
+    },
     // 切換餐點類別
     currCateChanged(id) {
       this.currCateId = id;

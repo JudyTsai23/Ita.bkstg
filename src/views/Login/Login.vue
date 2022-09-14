@@ -13,10 +13,10 @@
                   <!-- </div> -->
                   <h2 class="text-primary">Login</h2>
                 </div>
-                <CInput placeholder="Email" invalidFeedback="必填" :value.sync="acct" required>
+                <CInput placeholder="Email" invalidFeedback="必填" :value.sync="acct" required addInputClasses="rounded-right">
                   <template #prepend-content><CIcon name="cil-user" /></template>
                 </CInput>
-                <CInput placeholder="Password" invalidFeedback="必填" type="password" :value.sync="pxd" required>
+                <CInput placeholder="Password" invalidFeedback="必填" type="password" :value.sync="pxd" required addInputClasses="rounded-right">
                   <template #prepend-content><CIcon name="cil-https" /></template>
                 </CInput>
                 <CAlert color="danger" :show="loginFail">

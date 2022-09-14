@@ -92,7 +92,7 @@ export default {
     // 刪除子類別
     delSubCate(idx) {
       if (this.subCateList[idx].id != "") {
-        if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？")) {
+        if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
           if (this.checkChanged()) {
             this.$store.commit("set", ["globalLoading", true]);
             let url = ApiUrl.getUrl("mealCate", "deleteSub") + this.subCateList[idx].id;
@@ -152,6 +152,24 @@ export default {
         );
       }
       form.classList.add("was-validated");
+    },
+    del() {
+      if (confirm("將會連同類別中的餐點一並刪除！ 是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
+        this.$store.commit("set", ["globalLoading", true]);
+        let url_base = ApiUrl.getUrl("mealCate", "delete");
+        AjaxService.delete(
+          url_base + this.mealCateData.id,
+          (successResp) => {
+            this.$store.commit("set", ["globalLoading", false]);
+            console.log("刪除成功!");
+            this.$router.push("/mngt/meal/cate");
+          },
+          (errorResp) => {
+            console.log("刪除失敗!");
+            console.log(errorResp);
+          }
+        );
+      }
     },
   },
   computed: {

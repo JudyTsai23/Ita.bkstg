@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-restaurant" />
+      <CIcon name="cil-restaurant" class="mt-0" />
       餐點管理
     </CCardHeader>
 
@@ -40,10 +40,21 @@
             <!-- 一項餐點 -->
             <li v-for="meal in subCate.meals" :key="meal.id" class="row align-items-center border mb-3">
               <CIcon name="cil-elevator" customClasses="move-icon border-right" />
-
+              <!-- --餐點名稱-- -->
               <div class="col text-left">{{ meal.name }}</div>
-
-              <ProcessButtons :is-change="changed" :item-id="meal.id" item-group="meal" edit-url="/mngt/meal/edit/" />
+              <!-- --公開、期間限定、價格-- -->
+              <div class="col-auto d-flex align-items-center">
+                <!-- FIXME 待補 meal.isPublic -->
+                <CBadge v-if="true" color="light" class="label-badge ml-3">隱藏</CBadge>
+                <CBadge v-if="meal.limitDate" color="warning-light" class="small ml-3">
+                  期間限定
+                  <br />
+                  {{ limitDateFormat(meal.limitDate) }}
+                </CBadge>
+                <span class="ml-3">$ {{ meal.price }}</span>
+              </div>
+              <!-- --操作按鈕-- -->
+              <ProcessButtons :is-change="changed" :item-id="meal.id" item-group="meal" edit-url="/mngt/meal/edit/" class="border-left pl-3" />
             </li>
           </transition-group>
         </draggable>
@@ -57,4 +68,8 @@
   </CCard>
 </template>
 <script src="./Meal.js"></script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.label-badge {
+  font-size: 1em;
+}
+</style>

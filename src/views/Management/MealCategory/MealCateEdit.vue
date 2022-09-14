@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-list-numbered" />
+      <CIcon name="cil-list-numbered" class="mt-0" />
       {{ this.$route.name }}
     </CCardHeader>
 
@@ -59,6 +59,7 @@
     </CCardBody>
 
     <CCardFooter align="right">
+      <IconButton v-if="currId" color="danger" icon="cil-trash" @clickFn="del()" class="float-left">刪除此類別</IconButton>
       <CButton color="secondary" variant="outline" to="/mngt/meal/cate/" class="mr-3">取消</CButton>
       <CButton color="success" @click="save()">儲存設定</CButton>
     </CCardFooter>

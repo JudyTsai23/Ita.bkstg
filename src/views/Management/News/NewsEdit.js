@@ -125,5 +125,23 @@ export default {
       }
       form.classList.add("was-validated");
     },
+    del() {
+      if (confirm("是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
+        this.$store.commit("set", ["globalLoading", true]);
+        let url_base = ApiUrl.getUrl("news", "delete");
+        AjaxService.delete(
+          url_base + this.newsData.id,
+          (successResp) => {
+            this.$store.commit("set", ["globalLoading", false]);
+            console.log("刪除成功!");
+            this.$router.push("/mngt/news");
+          },
+          (errorResp) => {
+            console.log("刪除失敗!");
+            console.log(errorResp);
+          }
+        );
+      }
+    },
   },
 };

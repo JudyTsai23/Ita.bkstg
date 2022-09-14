@@ -1,7 +1,7 @@
 <template>
   <CButtonToolbar justify>
-    <IconButton color="warning" size="sm" icon="cil-pencil" @clickFn="edit()" class="text-white mr-2">編輯</IconButton>
-    <IconButton color="danger" size="sm" icon="cil-trash" @clickFn="del()" class="text-white mr-2">刪除</IconButton>
+    <IconButton color="warning" size="sm" icon="cil-pencil" @clickFn="edit()" class="text-white my-1 mr-2">編輯</IconButton>
+    <IconButton color="danger" size="sm" icon="cil-trash" @clickFn="del()" class="text-white my-1 mr-2">刪除</IconButton>
   </CButtonToolbar>
 </template>
 
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     delAlertStr() {
-      return this.delMsg + "是否確定要刪除？";
+      return this.delMsg + "是否確定要刪除？\n***** 請注意！刪除後無法復原！*****";
     },
   },
 };

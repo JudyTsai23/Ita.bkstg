@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-bullhorn" />
+      <CIcon name="cil-bullhorn" class="mt-0" />
       {{ this.$route.name }}
     </CCardHeader>
 
@@ -63,13 +63,14 @@
         <CRow form class="form-group">
           <CCol sm="3" class="col-form-label">是否置頂</CCol>
           <CCol sm="9" class="form-row justify-content-start align-items-center mx-0">
-            <CSwitch color="danger" size="sm" shape="pill" labelOn="是" labelOff="否" :checked.sync="newsData.top" />
+            <CSwitch color="danger" size="sm" shape="pill" labelOn="✓" labelOff="✕" :checked.sync="newsData.top" />
           </CCol>
         </CRow>
       </CForm>
     </CCardBody>
 
     <CCardFooter align="right">
+      <IconButton v-if="currId" color="danger" icon="cil-trash" @clickFn="del()" class="float-left">刪除此訊息</IconButton>
       <CButton color="secondary" variant="outline" to="/mngt/news" class="mr-3">取消</CButton>
       <CButton color="success" @click="save()">儲存設定</CButton>
     </CCardFooter>
@@ -80,6 +81,9 @@
 
 <style lang="scss" scoped>
 #updateForm::v-deep {
+  .c-switch-label .c-switch-slider::after {
+    margin-top: -0.8em;
+  }
   // XXX breakpoint使用scss的variables
   @media (min-width: 576px) {
     .form-row {

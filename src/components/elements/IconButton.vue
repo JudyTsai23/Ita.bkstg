@@ -1,33 +1,33 @@
 <template>
-  <CButton :color="color" :size="size" :shape="shape" :variant="variant" @click="clickFn()" class="d-flex align-item-center" :class="customClass">
-    <CIcon :name="icon" class="mr-1" :class="{ 'mt-0': size == 'sm' }" />
+  <CButton :color="color" :size="size" :shape="shape" :variant="variant" @click="clickFn()" class="d-flex align-items-center" :class="customClass">
+    <CIcon :name="icon" class="my-0 mr-1" />
     <slot name="default"></slot>
   </CButton>
 </template>
 
 <script>
 export default {
-  name: 'IconButton',
+  name: "IconButton",
   props: [
     // CButton的color
-    'color',
+    "color",
     // CButton的size
-    'size',
+    "size",
     // CButton的shape
-    'shape',
+    "shape",
     // CButton的variant
-    'variant',
+    "variant",
     // icon
-    'icon',
+    "icon",
     // 自訂class
-    'customClass',
+    "customClass",
   ],
   data() {
     return {};
   },
   methods: {
     clickFn() {
-      this.$emit('clickFn');
+      this.$emit("clickFn");
     },
   },
 };
