@@ -139,6 +139,10 @@ export default {
         }
       );
     },
+    // 禁止換行(輸入時不回傳此按鍵的值)
+    reject(e) {
+      e.returnValue = false;
+    },
     // 送出資料儲存
     save() {
       const form = document.querySelector("#updateForm");

@@ -30,3 +30,13 @@
 .custom-file-label::after {
   content: "瀏覽";
 }
+// custom form style
+.limit-hint {
+  small {
+    text-align: right;
+  }
+  // input:not(:focus) ~ small,
+  // textarea:not(:focus) ~ small {
+  //   visibility: hidden;
+  // }
+}

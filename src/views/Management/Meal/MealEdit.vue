@@ -30,7 +30,18 @@
           </template>
         </CInput>
         <!-- 描述欄位 -->
-        <CTextarea label="描述" placeholder="請描述餐點介紹" invalidFeedback="必填" v-model="mealData.description" horizontal required maxlength="250" rows="6">
+        <CTextarea
+          label="描述"
+          placeholder="請描述餐點介紹"
+          invalidFeedback="必填"
+          v-model="mealData.description"
+          horizontal
+          required
+          maxlength="220"
+          rows="6"
+          :description="`${mealData.description ? mealData.description.length : 0} / 220`"
+          addWrapperClasses="limit-hint"
+        >
           <template #label>
             <label class="col-sm-3 col-form-label">
               描述
@@ -39,7 +50,19 @@
           </template>
         </CTextarea>
         <!-- 內容物欄位 -->
-        <CTextarea label="內容物" placeholder="請列舉內容物" invalidFeedback="必填" v-model="mealData.ingredient" horizontal required maxlength="250" rows="6">
+        <CTextarea
+          label="內容物"
+          placeholder="請列舉內容物"
+          invalidFeedback="必填"
+          v-model="mealData.ingredient"
+          horizontal
+          required
+          maxlength="100"
+          rows="2"
+          :description="`${mealData.ingredient ? mealData.ingredient.length : 0} / 100`"
+          addWrapperClasses="limit-hint"
+          @keydown.enter="reject"
+        >
           <template #label>
             <label class="col-sm-3 col-form-label">
               內容物
@@ -48,7 +71,15 @@
           </template>
         </CTextarea>
         <!-- 備註欄位 -->
-        <CInput label="備註" placeholder="請填寫餐點備註" v-model="mealData.note" horizontal maxlength="255" />
+        <CInput
+          label="備註"
+          placeholder="請填寫餐點備註"
+          v-model="mealData.note"
+          horizontal
+          maxlength="250"
+          :description="`${mealData.note ? mealData.note.length : 0} / 250`"
+          addWrapperClasses="limit-hint"
+        />
         <!-- 價格欄位 -->
         <CInput type="number" label="價格" placeholder="請填寫餐點價格" :invalidFeedback="priceInvalidStr" v-model="mealData.price" horizontal required min="0">
           <template #label>

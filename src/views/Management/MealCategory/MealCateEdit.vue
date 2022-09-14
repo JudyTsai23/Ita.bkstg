@@ -11,7 +11,7 @@
         <CCol sm="6" md="5">
           <div class="cate-info rounded p-3 mb-5 mb-sm-0">
             <!-- 名稱欄位 -->
-            <CInput label="名稱" placeholder="請填寫類別名稱" invalidFeedback="必填" v-model="mealCateData.name_zh" horizontal required id="inputName">
+            <CInput label="名稱" placeholder="請填寫類別名稱" invalidFeedback="必填" v-model="mealCateData.name_zh" horizontal required maxlength="10" id="inputName">
               <template #label>
                 <label class="col-sm-3 col-form-label" for="inputName">
                   名稱
@@ -21,7 +21,7 @@
             </CInput>
 
             <!-- Slug欄位 -->
-            <CInput placeholder="請填寫Slug" invalidFeedback="必填" v-model="mealCateData.name" horizontal required id="inputSlug">
+            <CInput placeholder="請填寫Slug" invalidFeedback="必填" v-model="mealCateData.name" horizontal required maxlength="10" id="inputSlug">
               <template #label>
                 <label class="col-sm-3 col-form-label" for="inputSlug">
                   Slug
@@ -48,7 +48,7 @@
             <transition-group name="flip-list">
               <li v-for="(subCate, idx) in subCateList" :key="`subCate${idx}`" class="row align-items-center border list-group-item-info mb-3">
                 <CIcon name="cil-elevator" customClasses="move-icon" />
-                <CInput placeholder="請填寫子類別名稱" addInputClasses="input-subCate" v-model="subCate.name" required class="col p-0 mb-0" />
+                <CInput placeholder="請填寫子類別名稱" addInputClasses="input-subCate" v-model="subCate.name" required maxlength="10" class="col p-0 mb-0" />
                 <CButton @click="delSubCate(idx)" class="del-btn"><CIcon name="cil-trash" /></CButton>
               </li>
             </transition-group>

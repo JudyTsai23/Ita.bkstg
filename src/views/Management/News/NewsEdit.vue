@@ -12,9 +12,31 @@
         <!-- 標題欄位 -->
         <CInput label="標題" placeholder="請填寫訊息標題" invalidFeedback="必填" v-model="newsData.title" horizontal required maxlength="15" />
         <!-- 描述欄位 -->
-        <CTextarea label="描述" placeholder="請簡述訊息內容" invalidFeedback="必填" v-model="newsData.description" horizontal required maxlength="250" rows="6" />
+        <CTextarea
+          label="描述"
+          placeholder="請簡述訊息內容"
+          invalidFeedback="必填"
+          v-model="newsData.description"
+          horizontal
+          required
+          maxlength="220"
+          rows="4"
+          :description="`${newsData.description ? newsData.description.length : 0} / 220`"
+          addWrapperClasses="limit-hint"
+        />
         <!-- 內文欄位 -->
-        <CTextarea label="內文" placeholder="請撰寫訊息內容" invalidFeedback="必填" v-model="newsData.content" horizontal required rows="6" />
+        <CTextarea
+          label="內文"
+          placeholder="請撰寫訊息內容"
+          invalidFeedback="必填"
+          v-model="newsData.content"
+          horizontal
+          required
+          maxlength="950"
+          rows="6"
+          :description="`${newsData.content ? newsData.content.length : 0} / 950`"
+          addWrapperClasses="limit-hint"
+        />
         <!-- 封面圖片 -->
         <ImageInput label="封面圖片" horizontal :limitSize="300" limitUnit="KB" maxPreview="300px" :oldImage="newsData.image" :value.sync="UploadImage" />
         <!-- 發布日期欄位 -->
