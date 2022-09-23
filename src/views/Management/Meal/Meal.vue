@@ -44,8 +44,7 @@
               <div class="col text-left">{{ meal.name }}</div>
               <!-- --公開、期間限定、價格-- -->
               <div class="col-auto d-flex align-items-center">
-                <!-- FIXME 待補 meal.isPublic -->
-                <CBadge v-if="true" color="light" class="label-badge ml-3">隱藏</CBadge>
+                <CBadge v-if="!meal.public" color="light" class="label-badge ml-3">隱藏</CBadge>
                 <CBadge v-if="meal.limitDate" color="warning-light" class="small ml-3">
                   期間限定
                   <br />
