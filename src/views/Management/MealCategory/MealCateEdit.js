@@ -23,6 +23,8 @@ export default {
         sort: "",
         subCateList: Array(),
       },
+      // DB中的當前餐點類別資料
+      db_mealCateData: {},
       // 上傳的圖片(base64字串)
       UploadImage: "",
       // 是否曾經改動過
@@ -55,6 +57,11 @@ export default {
               sort: resultData.sort,
               subCateList: resultData.subCateList,
             };
+            // 紀錄db的原始資料
+            this.db_mealCateData = { ...this.mealCateData };
+            this.db_mealCateData.subCateList = resultData.subCateList.map((item) => {
+              return { ...item };
+            });
             this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點類別成功!");
           }
@@ -67,7 +74,9 @@ export default {
     },
     // 檢查頁面內容是否曾修改過
     checkChanged() {
-      if (this.changed) {
+      let cateChanged = JSON.stringify(this.mealCateData) != JSON.stringify(this.db_mealCateData);
+      // 是否有 修改過排序 或 修改過input欄位資料 或 選擇圖檔
+      if (this.changed || cateChanged || this.UploadImage) {
         if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
           // 確定離開
           return true;
