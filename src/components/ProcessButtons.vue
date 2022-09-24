@@ -42,7 +42,6 @@ export default {
       default: "",
     },
   },
-  inject: ["reload"],
   data() {
     return {};
   },
@@ -74,7 +73,7 @@ export default {
             (successResp) => {
               this.$store.commit("set", ["globalLoading", false]);
               console.log("刪除成功!");
-              this.reload();
+              this.$emit("reloadFn");
             },
             (errorResp) => {
               console.log("刪除失敗!");

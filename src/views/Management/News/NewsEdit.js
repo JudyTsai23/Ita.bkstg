@@ -90,6 +90,7 @@ export default {
     // 送出資料儲存
     save() {
       const form = document.querySelector("#updateForm");
+      form.classList.add("was-validated");
       if (form.checkValidity() === true) {
         this.$store.commit("set", ["globalLoading", true]);
         // 處理圖片資料
@@ -122,8 +123,9 @@ export default {
             console.log(errorResp);
           }
         );
+      } else {
+        document.querySelector("input:invalid,select:invalid,textarea:invalid").focus();
       }
-      form.classList.add("was-validated");
     },
     del() {
       if (confirm("是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {

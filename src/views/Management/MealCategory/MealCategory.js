@@ -9,7 +9,6 @@ export default {
     draggable,
     ProcessButtons,
   },
-  inject: ["reload"],
   data() {
     return {
       // 所有餐點類別
@@ -70,7 +69,6 @@ export default {
             successResp.restData.forEach((item) => {
               this.mealSubCateList[item.categoryId] = item.subCateList;
             });
-            console.log(this.mealSubCateList);
             this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點子類別成功!");
           }
@@ -128,7 +126,7 @@ export default {
         (successResp) => {
           this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點類別排序成功!");
-          this.reload();
+          this.init();
         },
         (errorResp) => {
           console.log("修改餐點類別排序失敗!");

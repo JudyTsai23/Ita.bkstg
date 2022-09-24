@@ -36,7 +36,7 @@
         <!-- 操作按鈕 -->
         <template #actions="{ item }">
           <td class="py-2">
-            <ProcessButtons :item-id="item.id" item-group="news" edit-url="/mngt/news/edit/" />
+            <ProcessButtons :item-id="item.id" item-group="news" edit-url="/mngt/news/edit/" @reloadFn="init" />
           </td>
         </template>
       </CDataTable>

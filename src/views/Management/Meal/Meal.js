@@ -9,7 +9,6 @@ export default {
     draggable,
     ProcessButtons,
   },
-  inject: ["reload"],
   data() {
     return {
       // 當前餐點類別ID
@@ -139,7 +138,7 @@ export default {
           this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點排序成功!");
           // TODO 刷新後應該要顯示同一類別
-          this.reload();
+          this.init();
         },
         (errorResp) => {
           console.log("修改餐點排序失敗!");

@@ -47,7 +47,7 @@
                     <span v-else v-for="subCate in mealSubCateList[cate.id]" :key="`subCate_${subCate.id}`" class="d-inline-block border rounded p-2 mb-2 mr-2">{{ subCate.name }}</span>
                   </p>
                   <!-- 修改/刪除 按鈕 -->
-                  <ProcessButtons :is-change="changed" :item-id="cate.id" item-group="mealCate" edit-url="/mngt/meal/cate/edit/" del-msg="將會連同類別中的餐點一並刪除！ " />
+                  <ProcessButtons :is-change="changed" :item-id="cate.id" item-group="mealCate" edit-url="/mngt/meal/cate/edit/" del-msg="將會連同類別中的餐點一並刪除！ " @reloadFn="init" />
                 </CCol>
               </CRow>
             </CCollapse>

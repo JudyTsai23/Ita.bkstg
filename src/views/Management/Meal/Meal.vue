@@ -53,7 +53,7 @@
                 <span class="ml-3">$ {{ meal.price }}</span>
               </div>
               <!-- --操作按鈕-- -->
-              <ProcessButtons :is-change="changed" :item-id="meal.id" item-group="meal" edit-url="/mngt/meal/edit/" class="border-left pl-3" />
+              <ProcessButtons :is-change="changed" :item-id="meal.id" item-group="meal" edit-url="/mngt/meal/edit/" @reloadFn="init" class="border-left pl-3" />
             </li>
           </transition-group>
         </draggable>

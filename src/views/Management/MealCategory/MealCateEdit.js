@@ -9,7 +9,6 @@ export default {
     draggable,
     ImageInput,
   },
-  inject: ["reload"],
   data() {
     return {
       // 當前餐點類別ID
@@ -110,7 +109,7 @@ export default {
               (successResp) => {
                 this.$store.commit("set", ["globalLoading", false]);
                 console.log("刪除餐點子類別成功!");
-                this.reload();
+                this.init();
               },
               (errorResp) => {
                 console.log("刪除餐點子類別失敗!");

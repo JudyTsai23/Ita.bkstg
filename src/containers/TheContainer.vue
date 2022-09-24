@@ -7,7 +7,7 @@
         <main class="c-main">
           <CContainer fluid>
             <transition name="fade" mode="out-in">
-              <router-view v-if="isRouterAlive" :key="$route.path"></router-view>
+              <router-view :key="$route.path"></router-view>
             </transition>
           </CContainer>
         </main>
@@ -29,22 +29,6 @@ export default {
     TheSidebar,
     TheHeader,
     TheFooter,
-  },
-  provide() {
-    return {
-      reload: this.reload,
-    };
-  },
-  data() {
-    return {
-      isRouterAlive: true,
-    };
-  },
-  methods: {
-    reload() {
-      this.isRouterAlive = false;
-      this.$nextTick(() => (this.isRouterAlive = true));
-    },
   },
 };
 </script>
