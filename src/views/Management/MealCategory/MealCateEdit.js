@@ -117,6 +117,7 @@ export default {
     // 送出資料儲存
     save() {
       const form = document.querySelector("#updateForm");
+      form.classList.add("was-validated");
       if (form.checkValidity() === true) {
         this.$store.commit("set", ["globalLoading", true]);
         // 處理子類別排序
@@ -148,10 +149,24 @@ export default {
           (errorResp) => {
             console.log("修改餐點類別失敗!");
             console.log(errorResp);
+            if ((errorResp.appCode = "ERROR_002")) {
+              this.$store.commit("set", ["globalLoading", false]);
+              const errorMsg = errorResp.response.data.appMsg;
+              // 錯誤的input
+              let $input = errorMsg == "Slug 不得重複" ? this.$refs.inputSlug : this.$refs.inputName;
+              // 加樣式、訊息、focus
+              $input.addInputClasses = "is-invalid";
+              $input.invalidFeedback = errorMsg;
+              document.getElementById($input.safeId).focus();
+              // 避免和form驗證結果的樣式衝突
+              form.classList.remove("was-validated");
+              alert(errorMsg);
+            }
           }
         );
+      } else {
+        document.querySelector("input:invalid,select:invalid,textarea:invalid").focus();
       }
-      form.classList.add("was-validated");
     },
     del() {
       if (confirm("將會連同類別中的餐點一並刪除！ 是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
