@@ -10,7 +10,7 @@
         <!-- 類別 -->
         <CSelect label="訊息類別" placeholder="請選擇類別" invalidFeedback="必選" v-model="newsData.type" horizontal required :options="newsTypeList" />
         <!-- 標題欄位 -->
-        <CInput label="標題" placeholder="請填寫訊息標題" invalidFeedback="必填" v-model="newsData.title" horizontal required maxlength="15" />
+        <CInput label="標題" placeholder="請填寫訊息標題" invalidFeedback="必填" v-model="newsData.title" horizontal required maxlength="20" />
         <!-- 描述欄位 -->
         <CTextarea
           label="描述"
