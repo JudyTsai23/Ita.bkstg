@@ -13,8 +13,6 @@ export default {
     return {
       // 當前餐點ID
       currId: this.$route.params.id,
-      // 返回的URL
-      backTo: "/mngt/meal",
       // 當前餐點類別資料
       mealData: {
         id: "",
@@ -47,6 +45,7 @@ export default {
       }
       this.getMealCateList();
       this.getMealSubCateList();
+      this.mealData.category = Number(this.$route.query.cate);
     },
 
     // 取得當前餐點資料
@@ -83,9 +82,6 @@ export default {
             };
             this.$store.commit("set", ["globalLoading", false]);
             console.log("查詢餐點成功!");
-
-            // "返回"按鈕的連結帶參數
-            this.backTo += `?cate=${this.mealData.category}`;
           }
         },
         (errorResp) => {

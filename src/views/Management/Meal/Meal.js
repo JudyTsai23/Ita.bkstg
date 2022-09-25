@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       // 當前餐點類別ID
-      currCateId: 0,
+      currCateId: this.$route.query.cate,
       // 所有餐點類別 (id和中文名稱)
       mealCateList: [],
       // 當前類別的所有餐點
@@ -20,11 +20,6 @@ export default {
       // 是否曾經改動過
       changed: false,
     };
-  },
-  watch: {
-    currCateId() {
-      this.getMealList();
-    },
   },
   mounted() {
     this.init();
@@ -50,9 +45,11 @@ export default {
               return cate;
             });
             console.log("查詢餐點類別成功!");
+
             // 是否有需要顯示的類別，若無則顯示第一個類別
-            let currCate = this.$route.query.cate;
-            this.currCateId = currCate ? currCate : this.mealCateList[0].id;
+            if (!this.currCateId) {
+              this.currCateId = this.mealCateList[0].id;
+            }
             this.getMealList();
             this.$store.commit("set", ["globalLoading", false]);
           }
@@ -93,6 +90,8 @@ export default {
     // 切換餐點類別
     currCateChanged(id) {
       this.currCateId = id;
+      this.getMealList();
+      this.$router.replace("/mngt/meal?cate=" + id);
     },
     // 檢查頁面內容是否曾修改過
     checkChanged() {
@@ -115,7 +114,7 @@ export default {
     // 前往新增餐點
     addMeal() {
       if (this.checkChanged()) {
-        this.$router.push("/mngt/meal/create");
+        this.$router.push("/mngt/meal/create?cate=" + this.currCateId);
       }
     },
     // 送出排序資料儲存
@@ -137,8 +136,7 @@ export default {
         (successResp) => {
           this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點排序成功!");
-          // TODO 刷新後應該要顯示同一類別
-          this.init();
+          this.getMealList();
         },
         (errorResp) => {
           console.log("修改餐點排序失敗!");

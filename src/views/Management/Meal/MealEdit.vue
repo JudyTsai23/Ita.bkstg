@@ -116,7 +116,7 @@
 
     <CCardFooter align="right">
       <IconButton v-if="currId" color="danger" icon="cil-trash" @clickFn="del()" class="float-left">刪除此餐點</IconButton>
-      <CButton color="secondary" variant="outline" :to="backTo" class="mr-3">取消</CButton>
+      <CButton color="secondary" variant="outline" :to="`/mngt/meal?cate=${this.mealData.category}`" class="mr-3">取消</CButton>
       <CButton color="success" @click="save()">儲存設定</CButton>
     </CCardFooter>
   </CCard>
