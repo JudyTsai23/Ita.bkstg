@@ -10,6 +10,7 @@ const Register = () => import("@/views/pages/Register");
 Vue.use(Router);
 
 const router = new Router({
+  base: process.env.VUE_APP_ROUTER_BASE,
   mode: "history", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: () => ({ y: 0 }),

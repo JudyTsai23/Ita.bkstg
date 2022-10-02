@@ -2,9 +2,24 @@ import Axios from "axios";
 
 const CLASS_NAME = "[AjaxService] ";
 
+function changeUrl(url) {
+  let mode = process.env.NODE_ENV;
+  // 判斷執行模式為測試還是正式
+  if (mode === "development") {
+    // 若為測試環境則直接回傳
+    return url;
+  } else {
+    // 若為正式則修改為正式的後端網址
+    return url.replace("/server", "http://joyu.libra-tw.org:8080/ita/");
+  }
+}
+
 const AjaxService = {
   // post request 傳參數
   post(url, param, successCallBack, failCallBack) {
+    // 轉換 url
+    url = changeUrl(url);
+
     Axios.post(url, param, {})
       .then((resp) => {
         // 傳送完成，判斷 appCode
@@ -34,6 +49,9 @@ const AjaxService = {
   },
   // get request
   get(url, successCallBack, failCallBack) {
+    // 轉換 url
+    url = changeUrl(url);
+
     Axios.get(url, {})
       .then((resp) => {
         // 傳送完成，判斷 appCode
@@ -63,6 +81,9 @@ const AjaxService = {
   },
   // put request 傳參數
   put(url, param, successCallBack, failCallBack) {
+    // 轉換 url
+    url = changeUrl(url);
+
     Axios.put(url, param, {})
       .then((resp) => {
         // 傳送完成，判斷 appCode
@@ -92,6 +113,9 @@ const AjaxService = {
   },
   // delete request
   delete(url, successCallBack, failCallBack) {
+    // 轉換 url
+    url = changeUrl(url);
+
     Axios.delete(url, {})
       .then((resp) => {
         // 傳送完成，判斷 appCode

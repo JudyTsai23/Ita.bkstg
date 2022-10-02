@@ -1,6 +1,7 @@
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: true,
+  publicPath: process.env.BASE_URL,
   configureWebpack: {
     //Necessary to run npm link https://webpack.js.org/configuration/resolve/#resolve-symlinks
     resolve: {
