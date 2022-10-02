@@ -10,7 +10,7 @@ function changeUrl(url) {
     return url;
   } else {
     // 若為正式則修改為正式的後端網址
-    return url.replace("/server", "http://joyu.libra-tw.org:8080/ita/");
+    return url.replace("/server", "http://joyu.libra-tw.org:8080/ita");
   }
 }
 
