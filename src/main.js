@@ -5,12 +5,14 @@ import router from "./router";
 import CoreuiVue from "@coreui/vue";
 import { iconsSet as icons } from "./assets/icons/icons.js";
 import store from "./store";
+import CoreuiVueCharts from "@coreui/vue-chartjs";
 
 // global components
 import IconButton from "@/components/elements/IconButton";
 
 Vue.config.performance = true;
 Vue.use(CoreuiVue);
+Vue.use(CoreuiVueCharts);
 Vue.prototype.$log = console.log.bind(console);
 
 // 設定 global components

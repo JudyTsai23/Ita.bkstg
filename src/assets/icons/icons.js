@@ -76,6 +76,9 @@ import {
   cilLeaf,
   cilHttps,
   cilUserUnfollow,
+  cilBarChart,
+  cilChartLine,
+  cilHeart,
 } from "@coreui/icons";
 import { cilElevator, cilCaretBottom, cilX, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
 import { logo } from "./logo";
@@ -135,6 +138,9 @@ export const iconsSet = Object.assign(
     cilLeaf,
     cilHttps,
     cilUserUnfollow,
+    cilBarChart,
+    cilChartLine,
+    cilHeart,
   },
   {
     cifUs,
