@@ -1,10 +1,20 @@
 <template>
-  <CInputFile :placeholder="UploadImageSelectedStr" custom :horizontal="horizontal" :required="isRequired" accept="image/*" @change="GetUploadImage" :id="safeId" class="form-group">
+  <CInputFile
+    :placeholder="UploadImageSelectedStr"
+    invalidFeedback="請選擇圖片"
+    custom
+    :horizontal="horizontal"
+    :required="isRequired"
+    accept="image/*"
+    @change="GetUploadImage"
+    :id="safeId"
+    class="form-group"
+  >
     <!-- Label -->
     <template v-if="horizontal" #label>
       <span :class="LabelGridClass">
         {{ label }}
-        <span v-if="isRequired" class="text-danger">*</span>
+        <span v-if="oldImage == ''" class="text-danger">*</span>
       </span>
     </template>
     <!-- 圖片預覽 -->
@@ -90,7 +100,7 @@ export default {
     },
     // 是否需要必填
     isRequired() {
-      if (this.oldImage == "") {
+      if (this.oldImage == "" && this.UploadImage == "") {
         return true;
       }
       return false;
