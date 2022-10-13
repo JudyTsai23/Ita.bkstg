@@ -11,6 +11,9 @@ export default {
   },
   data() {
     return {
+      // demo用的預設資料(類別的id到6，子類別的id到20)
+      delLockCateId: 6,
+      delLockSubCateId: 20,
       // 當前餐點類別ID
       currId: this.$route.params.id,
       // 當前餐點類別資料
@@ -100,7 +103,10 @@ export default {
     // 刪除子類別
     delSubCate(idx) {
       if (this.subCateList[idx].id != "") {
-        if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
+        if (this.subCateList[idx].id <= this.delLockSubCateId) {
+          // demo用的預設資料，不可刪除
+          alert("此為前台DEMO用的預設資料，不可刪除！\n如需測試功能，請先新增子類別再進行測試。");
+        } else if (confirm("將會連同類別中的餐點一並刪除！是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
           if (this.checkChanged()) {
             this.$store.commit("set", ["globalLoading", true]);
             let url = ApiUrl.getUrl("mealCate", "deleteSub") + this.subCateList[idx].id;
@@ -177,7 +183,10 @@ export default {
       }
     },
     del() {
-      if (confirm("將會連同類別中的餐點一並刪除！ 是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
+      if (this.mealCateData.id <= this.delLockCateId) {
+        // demo用的預設資料，不可刪除
+        alert("此為前台DEMO用的預設資料，不可刪除！");
+      } else if (confirm("將會連同類別中的餐點一並刪除！ 是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
         this.$store.commit("set", ["globalLoading", true]);
         let url_base = ApiUrl.getUrl("mealCate", "delete");
         AjaxService.delete(

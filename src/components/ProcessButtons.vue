@@ -36,6 +36,11 @@ export default {
       type: String,
       default: "",
     },
+    // 不可刪除的最大id
+    delLockId: {
+      type: Number,
+      default: 0,
+    },
     // 刪除的提醒說明
     delMsg: {
       type: String,
@@ -64,7 +69,11 @@ export default {
       }
     },
     del() {
-      if (confirm(this.delAlertStr)) {
+      console.log(this.delLockId);
+      if (this.itemId <= this.delLockId) {
+        // demo用的預設資料，不可刪除
+        alert("此為前台DEMO用的預設資料，不可刪除！\n如需測試功能，請先新增再進行測試。");
+      } else if (confirm(this.delAlertStr)) {
         if (this.checkChanged()) {
           this.$store.commit("set", ["globalLoading", true]);
           let url_base = this.delUrl == "" ? ApiUrl.getUrl(this.itemGroup, "delete") : this.delUrl;

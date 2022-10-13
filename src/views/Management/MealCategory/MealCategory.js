@@ -11,6 +11,8 @@ export default {
   },
   data() {
     return {
+      // demo用的預設資料(類別的id到6)
+      delLockCateId: 6,
       // 所有餐點類別
       mealCateList: [],
       // 所有餐點子類別
