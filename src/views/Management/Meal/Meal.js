@@ -136,6 +136,7 @@ export default {
         (successResp) => {
           this.$store.commit("set", ["globalLoading", false]);
           console.log("修改餐點排序成功!");
+          this.changed = false;
           this.getMealList();
         },
         (errorResp) => {
