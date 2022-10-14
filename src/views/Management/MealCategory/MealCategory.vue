@@ -32,7 +32,7 @@
                   圖示：
                   <img :src="cate.icon" alt="" class="img-thumbnail bg-white align-top" />
                 </CCol>
-                <CCol sm="8" md="9" class="pb-4">
+                <CCol sm="8" md="9">
                   <p>
                     名稱：
                     <span class="font-weight-bold">{{ cate.name_zh }}</span>
@@ -46,6 +46,10 @@
                     <span v-if="typeof mealSubCateList[cate.id] === 'undefined'" class="text-muted">無</span>
                     <span v-else v-for="subCate in mealSubCateList[cate.id]" :key="`subCate_${subCate.id}`" class="d-inline-block border rounded p-2 mb-2 mr-2">{{ subCate.name }}</span>
                   </p>
+                </CCol>
+                <CCol class="d-flex justify-content-between mt-3">
+                  <!-- 前往此類別的餐點管理 按鈕 -->
+                  <IconButton size="sm" color="info" icon="cil-arrow-right" :to="`/mngt/meal?cate=${cate.id}`" class="my-1">管理餐點</IconButton>
                   <!-- 修改/刪除 按鈕 -->
                   <ProcessButtons
                     :is-change="changed"
@@ -81,10 +85,5 @@
 .img-thumbnail {
   max-width: 120px;
   width: calc(100% - 3rem);
-}
-.btn-toolbar {
-  position: absolute;
-  bottom: 0;
-  right: 15px;
 }
 </style>

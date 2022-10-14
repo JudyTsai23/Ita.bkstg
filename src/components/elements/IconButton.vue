@@ -1,5 +1,5 @@
 <template>
-  <CButton :color="color" :size="size" :shape="shape" :variant="variant" @click="clickFn()" class="d-flex align-items-center" :class="customClass">
+  <CButton :color="color" :size="size" :shape="shape" :variant="variant" :to="to" @click="clickFn()" class="d-flex align-items-center" :class="customClass">
     <CIcon :name="icon" class="my-0 mr-1" />
     <slot name="default"></slot>
   </CButton>
@@ -17,6 +17,8 @@ export default {
     "shape",
     // CButton的variant
     "variant",
+    // CButton的to
+    "to",
     // icon
     "icon",
     // 自訂class

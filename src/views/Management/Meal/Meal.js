@@ -13,6 +13,8 @@ export default {
     return {
       // 當前餐點類別ID
       currCateId: this.$route.query.cate,
+      // 當前餐點類別slug
+      currCateSlug: "",
       // 所有餐點類別 (id和中文名稱)
       mealCateList: [],
       // 當前類別的所有餐點
@@ -37,20 +39,23 @@ export default {
         (successResp) => {
           if (successResp.restData) {
             let resultList = successResp.restData;
+            // 所有餐點類別資料
             this.mealCateList = resultList.map((item) => {
               let cate = {
                 id: item.id,
                 name_zh: item.zhName,
+                slug: item.name,
               };
               return cate;
             });
+            console.log(this.mealCateList);
             console.log("查詢餐點類別成功!");
 
             // 是否有需要顯示的類別，若無則顯示第一個類別
             if (!this.currCateId) {
               this.currCateId = this.mealCateList[0].id;
             }
-            this.getMealList();
+            this.currCateChanged(this.currCateId);
             this.$store.commit("set", ["globalLoading", false]);
           }
         },
@@ -90,6 +95,10 @@ export default {
     // 切換餐點類別
     currCateChanged(id) {
       this.currCateId = id;
+      // 當前餐點類別的slug
+      let currCate = this.mealCateList.find((item) => item.id == id);
+      this.currCateSlug = currCate.slug;
+
       this.getMealList();
       this.$router.replace("/mngt/meal?cate=" + id);
     },
@@ -144,6 +153,11 @@ export default {
           console.log(errorResp);
         }
       );
+    },
+  },
+  computed: {
+    website() {
+      return `${process.env.VUE_APP_WEBSITE}/menu/${this.currCateSlug}`;
     },
   },
 };

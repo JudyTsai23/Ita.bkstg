@@ -1,8 +1,12 @@
 <template>
   <CCard>
-    <CCardHeader class="h5 font-weight-bold">
-      <CIcon name="cil-bullhorn" class="mt-0" />
+    <CCardHeader class="d-flex align-items-center h5 font-weight-bold">
+      <CIcon name="cil-bullhorn" class="mt-0 mr-2" />
       訊息管理
+      <CButton size="sm" color="primary-light" variant="ghost" :href="website" target="_blank" class="ml-auto">
+        查看前台頁面
+        <CIcon name="cil-external-link" size="sm" />
+      </CButton>
     </CCardHeader>
 
     <CCardBody>

@@ -91,4 +91,9 @@ export default {
       return true;
     },
   },
+  computed: {
+    website() {
+      return `${process.env.VUE_APP_WEBSITE}/news`;
+    },
+  },
 };

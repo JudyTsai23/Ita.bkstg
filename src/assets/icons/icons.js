@@ -80,7 +80,7 @@ import {
   cilChartLine,
   cilHeart,
 } from "@coreui/icons";
-import { cilElevator, cilCaretBottom, cilX, cilTrash, cilPlaylistAdd, cilBolt } from "@coreui/icons";
+import { cilElevator, cilCaretBottom, cilX, cilTrash, cilPlaylistAdd, cilBolt, cilExternalLink } from "@coreui/icons";
 import { logo } from "./logo";
 
 export const iconsSet = Object.assign(
@@ -182,5 +182,6 @@ export const iconsSet = Object.assign(
     cilX,
     cilPlaylistAdd,
     cilBolt,
+    cilExternalLink,
   }
 );
