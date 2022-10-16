@@ -32,6 +32,10 @@ export default router;
 function configRoutes() {
   return [
     {
+      path: "/",
+      redirect: "/mngt",
+    },
+    {
       path: "/login",
       name: "登入",
       component: () => import("@/views/Login/Login.vue"),

@@ -15,15 +15,7 @@
         :height="35" 
         viewBox="0 0 110 134"
       /> -->
-      <img src="@/assets/img/logo/logo-rmbg.png" />
-      <div class="d-inline-flex align-items-center">
-        <h4 class="mb-1">C</h4>
-        <span class="mr-1">ontent</span>
-        <h4 class="mb-1">M</h4>
-        <span class="mr-1">anagement</span>
-        <h4 class="mb-1">S</h4>
-        <span>ystem</span>
-      </div>
+      <img src="@/assets/img/logo/logo_prod.png" />
     </CSidebarBrand>
 
     <CRenderFunction flat :content-to-render="$options.nav" />

@@ -3,7 +3,7 @@
     <CToggler in-header class="ml-3 d-lg-none" @click="$store.commit('toggleSidebarMobile')" />
     <CToggler in-header class="ml-3 d-md-down-none" @click="$store.commit('toggleSidebarDesktop')" />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
-      <img src="@/assets/img/logo/logo-rmbg.png" style="width: 15%" />
+      <img src="@/assets/img/logo/logo_hor_prod.png" style="width: 15%" />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CHeaderNavItem class="px-3">

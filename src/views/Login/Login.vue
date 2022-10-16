@@ -8,7 +8,7 @@
               <CForm id="loginForm" class="needs-validation">
                 <div class="text-center mb-4">
                   <!-- <div class="d-flex align-items-center justify-content-center"> -->
-                  <img class="logo" src="@/assets/img/logo/logo-rmbg.png" />
+                  <img class="logo" src="@/assets/img/logo/msita_bkstg_icon.png" />
                   <!-- <h1 class="text-dark">Ms.Ita</h1> -->
                   <!-- </div> -->
                   <h2 class="text-primary">Login</h2>
