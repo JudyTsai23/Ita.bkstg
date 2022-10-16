@@ -25,6 +25,8 @@ export default {
   },
   data() {
     return {
+      // demo用的預設資料(訊息的id為小於2211010000000的)
+      delLockNewsId: 2211010000000,
       // 所有訊息
       newsList: [],
       // 表格標題列

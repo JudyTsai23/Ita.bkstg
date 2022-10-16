@@ -40,7 +40,7 @@
         <!-- 操作按鈕 -->
         <template #actions="{ item }">
           <td class="py-2">
-            <ProcessButtons :item-id="item.id" item-group="news" edit-url="/mngt/news/edit/" @reloadFn="init" />
+            <ProcessButtons :item-id="item.id" item-group="news" edit-url="/mngt/news/edit/" :del-lock-id="delLockNewsId" @reloadFn="init" />
           </td>
         </template>
       </CDataTable>

@@ -64,8 +64,8 @@ export default {
     },
     // 刪除的按鈕 先檢查是否修改過才執行 (編輯的按鈕是以beforeRouteLeave來檢查是否修改過，不須另寫)
     del() {
-      console.log(this.delLockId);
-      if (this.itemId <= this.delLockId) {
+      const id = Number(this.itemId);
+      if (id <= this.delLockId) {
         // demo用的預設資料，不可刪除
         alert("此為前台DEMO用的預設資料，不可刪除！\n如需測試功能，請先新增再進行測試。");
       } else if (confirm(this.delAlertStr)) {
@@ -73,7 +73,7 @@ export default {
           this.$store.commit("set", ["globalLoading", true]);
           let url_base = this.delUrl == "" ? ApiUrl.getUrl(this.itemGroup, "delete") : this.delUrl;
           AjaxService.delete(
-            url_base + this.itemId,
+            url_base + id,
             (successResp) => {
               this.$store.commit("set", ["globalLoading", false]);
               console.log("刪除成功!");

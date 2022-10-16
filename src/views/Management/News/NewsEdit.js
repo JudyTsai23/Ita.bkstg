@@ -10,6 +10,8 @@ export default {
   },
   data() {
     return {
+      // demo用的預設資料(訊息的id為小於2211010000000的)
+      delLockNewsId: 2211010000000,
       // 當前訊息ID
       currId: this.$route.params.id,
       // 當前訊息資料
@@ -128,11 +130,15 @@ export default {
       }
     },
     del() {
-      if (confirm("是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
+      const id = Number(this.newsData.id);
+      if (id <= this.delLockNewsId) {
+        // demo用的預設資料，不可刪除
+        alert("此為前台DEMO用的預設資料，不可刪除！");
+      } else if (confirm("是否確定要刪除？\n***** 請注意！刪除後無法復原！*****")) {
         this.$store.commit("set", ["globalLoading", true]);
         let url_base = ApiUrl.getUrl("news", "delete");
         AjaxService.delete(
-          url_base + this.newsData.id,
+          url_base + id,
           (successResp) => {
             this.$store.commit("set", ["globalLoading", false]);
             console.log("刪除成功!");

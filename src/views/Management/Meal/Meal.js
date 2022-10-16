@@ -11,6 +11,8 @@ export default {
   },
   data() {
     return {
+      // demo用的預設資料(餐點的id為小於2211010000000的)
+      delLockMealId: 2211010000000,
       // 當前餐點類別ID
       currCateId: this.$route.query.cate,
       // 當前餐點類別slug
@@ -53,7 +55,6 @@ export default {
               };
               return cate;
             });
-            console.log(this.mealCateList);
             console.log("查詢餐點類別成功!");
 
             // 是否有需要顯示的類別，若無則顯示第一個類別
@@ -119,12 +120,6 @@ export default {
       // 未曾修改=>確定執行(會重新query)
       return true;
     },
-    // 前往修改餐點類別
-    // editCate() {
-    //   if (this.checkChanged()) {
-    //     this.$router.push("/mngt/meal/cate");
-    //   }
-    // },
     // 前往新增餐點
     addMeal() {
       if (this.checkChanged()) {
