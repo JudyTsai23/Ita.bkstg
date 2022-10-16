@@ -79,13 +79,13 @@ export default {
       let cateChanged = JSON.stringify(this.mealCateData) != JSON.stringify(this.db_mealCateData);
       // 是否有 修改過排序 或 修改過input欄位資料 或 選擇圖檔
       if (this.changed || cateChanged || this.UploadImage) {
-        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
-          // 確定離開
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否執行？")) {
+          // 確定執行(會重新query)
           return true;
         }
         return false;
       }
-      // 未曾修改=>確定離開
+      // 未曾修改=>確定執行(會重新query)
       return true;
     },
     // 增加子類別

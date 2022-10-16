@@ -78,18 +78,6 @@ export default {
           "light";
       }
     },
-    // 檢查頁面內容是否曾修改過
-    checkChanged() {
-      if (this.changed) {
-        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
-          // 確定離開
-          return true;
-        }
-        return false;
-      }
-      // 未曾修改=>確定離開
-      return true;
-    },
   },
   computed: {
     website() {

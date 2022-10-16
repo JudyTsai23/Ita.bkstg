@@ -23,6 +23,11 @@ export default {
       changed: false,
     };
   },
+  beforeRouteLeave(to, from, next) {
+    if (this.checkChanged()) {
+      next();
+    }
+  },
   mounted() {
     this.init();
   },
@@ -96,13 +101,13 @@ export default {
     // 檢查頁面內容是否曾修改過
     checkChanged() {
       if (this.changed) {
-        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
-          // 確定離開
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要執行？")) {
+          // 確定執行(會重新query)
           return true;
         }
         return false;
       }
-      // 未曾修改=>確定離開
+      // 未曾修改=>確定執行(會重新query)
       return true;
     },
     // 前往新增類別

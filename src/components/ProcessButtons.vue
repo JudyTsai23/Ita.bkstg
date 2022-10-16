@@ -1,6 +1,6 @@
 <template>
   <CButtonToolbar justify>
-    <IconButton color="warning" size="sm" icon="cil-pencil" @clickFn="edit()" class="text-white my-1 mr-2">編輯</IconButton>
+    <IconButton color="warning" size="sm" icon="cil-pencil" :to="editTo" class="text-white my-1 mr-2">編輯</IconButton>
     <IconButton color="danger" size="sm" icon="cil-trash" @clickFn="del()" class="text-white my-1 mr-2">刪除</IconButton>
   </CButtonToolbar>
 </template>
@@ -53,21 +53,16 @@ export default {
   methods: {
     checkChanged() {
       if (this.isChange) {
-        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要離開此頁面？")) {
-          // 確定離開
+        if (confirm("頁面內容曾修改過，尚未儲存修改的變更將會捨棄！\n是否確定要執行？")) {
+          // 確定執行(會重新query)
           return true;
         }
         return false;
       }
-      // 未曾修改=>確定離開
+      // 未曾修改=>確定執行(會重新query)
       return true;
     },
-    edit() {
-      if (this.checkChanged()) {
-        let url_base = this.editUrl == "" ? ApiUrl.getUrl(this.itemGroup, "edit") : this.editUrl;
-        this.$router.push(url_base + this.itemId);
-      }
-    },
+    // 刪除的按鈕 先檢查是否修改過才執行 (編輯的按鈕是以beforeRouteLeave來檢查是否修改過，不須另寫)
     del() {
       console.log(this.delLockId);
       if (this.itemId <= this.delLockId) {
@@ -96,6 +91,10 @@ export default {
   computed: {
     delAlertStr() {
       return this.delMsg + "是否確定要刪除？\n***** 請注意！刪除後無法復原！*****";
+    },
+    editTo() {
+      let url_base = this.editUrl == "" ? ApiUrl.getUrl(this.itemGroup, "edit") : this.editUrl;
+      return url_base + this.itemId;
     },
   },
 };

@@ -15,7 +15,7 @@
         <li class="nav-item" v-for="cate in mealCateList" :key="cate.id" :active="currCateId == cate.id">
           <a href="#" class="nav-link" :class="{ active: currCateId == cate.id }" @click.prevent="currCateChanged(cate.id)">{{ cate.name_zh }}</a>
         </li>
-        <IconButton color="dark" variant="outline" size="sm" icon="cil-pencil" @clickFn="editCate()" class="align-self-center ml-3 py-0">修改類別</IconButton>
+        <IconButton color="dark" variant="outline" size="sm" icon="cil-pencil" to="/mngt/meal/cate" class="align-self-center ml-3 py-0">修改類別</IconButton>
       </ul>
       <!-- 提醒訊息 -->
       <CAlert color="info" closeButton>
