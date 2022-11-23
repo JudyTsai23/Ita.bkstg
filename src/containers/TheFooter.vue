@@ -4,6 +4,7 @@
       <div>
         <span>Ms.Ita © 2022</span>
         ( <a target="_blank" :href="website">前台餐廳網站 <CIcon name="cil-external-link" size="sm" class="align-baseline" /></a> )
+        <small class="ml-1">{{ version }}</small>
       </div>
       <small>Design by Joyu & Judy ( saiyuki0804@gmail.com )</small>
     </div>
@@ -25,6 +26,9 @@ export default {
   computed: {
     website() {
       return process.env.VUE_APP_WEBSITE;
+    },
+    version() {
+      return process.env.VUE_APP_VERSION;
     },
   },
 };

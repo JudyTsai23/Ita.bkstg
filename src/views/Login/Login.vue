@@ -41,15 +41,12 @@
             <span class="mb-2">密碼：yu60441</span>
             <span>練習用網站，不為商業所用，如有侵權敬請告知</span>
             <span>Ms.Ita © 2022</span>
+            <span>{{ version }}</span>
           </div>
         </CCol>
       </CRow>
     </CContainer>
 
-    <div class="footer w-100 d-flex justify-content-around text-primary">
-      <!-- <div class="d-flex flex-column">
-      </div> -->
-    </div>
     <CElementCover v-if="$store.state.globalLoading" :opacity="0.8" />
   </div>
 </template>

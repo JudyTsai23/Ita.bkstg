@@ -9,9 +9,16 @@ export default {
       loginFail: false,
     };
   },
+  computed: {
+    version() {
+      return process.env.VUE_APP_VERSION;
+    },
+  },
   methods: {
     // 登入
     login() {
+      // 先還原
+      this.loginFail = false;
       const form = document.querySelector("#loginForm");
       if (form.checkValidity() === true) {
         this.$store.commit("set", ["globalLoading", true]);
@@ -35,6 +42,7 @@ export default {
           },
           (errorResp) => {
             if (errorResp.restData) {
+              this.$store.commit("set", ["globalLoading", false]);
               console.log("登入失敗");
               let loginResult = errorResp.restData.login;
               this.loginFail = !loginResult;
